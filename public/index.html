@@ -35,7 +35,7 @@
         <div class="flex items-center gap-2 sm:gap-3">
           <button id="btn-download-json-header" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition-colors cursor-pointer">
             <i class="fa-solid fa-download"></i>
-            <span>Download .json</span>
+            <span>Export JSON</span>
           </button>
         </div>
       </div>
@@ -43,10 +43,10 @@
       <!-- Navigation Tabs -->
       <nav class="flex space-x-6 border-t border-slate-100 text-sm font-medium">
         <button data-tab="builder" class="tab-btn py-3 px-1 border-b-2 border-indigo-600 text-indigo-600 bg-indigo-50/50 font-semibold flex items-center gap-2">
-          <i class="fa-solid fa-pen-to-square"></i> Assessment Builder & Live Preview
+          <i class="fa-solid fa-pen-to-square"></i> Visual Builder
         </button>
         <button data-tab="code" class="tab-btn py-3 px-1 border-b-2 border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 flex items-center gap-2">
-          <i class="fa-solid fa-code"></i> JSON Inspector & Export
+          <i class="fa-solid fa-code"></i> JSON Editor
         </button>
       </nav>
     </div>
@@ -77,7 +77,7 @@
             <i class="fa-solid fa-floppy-disk"></i> Save Changes
           </button>
           <button id="btn-download-json" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition-colors cursor-pointer">
-            <i class="fa-solid fa-download"></i> Download Assessment JSON
+            <i class="fa-solid fa-download"></i> Download Draft
           </button>
         </div>
       </div>
@@ -92,14 +92,14 @@
           <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-4">
             <div class="flex items-center justify-between border-b border-slate-100 pb-2">
               <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
-                <i class="fa-solid fa-sliders text-indigo-500"></i> Assessment Settings & Visual Theme
+                <i class="fa-solid fa-sliders text-indigo-500"></i> Settings & Theme
               </h3>
               <span id="badge-total-points" class="text-xs font-semibold bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full">Total Points: 0</span>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
               <div class="md:col-span-2">
-                <label class="block font-semibold text-slate-700 mb-1">Assessment Title</label>
+                <label class="block font-semibold text-slate-700 mb-1">Title</label>
                 <input type="text" id="edit-course-title" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:ring-2 focus:ring-indigo-500">
               </div>
 
@@ -124,7 +124,7 @@
               </div>
 
               <div class="md:col-span-2">
-                <label class="block font-semibold text-slate-700 mb-1">Introduction Body (Shown on LMS start)</label>
+                <label class="block font-semibold text-slate-700 mb-1">Introduction Text</label>
                 <textarea id="edit-intro-body" rows="2" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-xs text-slate-800 focus:ring-2 focus:ring-indigo-500"></textarea>
               </div>
 
@@ -133,7 +133,7 @@
                 <div class="flex items-center justify-between p-2.5 rounded-lg bg-slate-50 border border-slate-200">
                   <div class="pr-2">
                     <label for="edit-shuffle-questions" class="font-semibold text-slate-700 text-xs flex items-center gap-1.5 cursor-pointer">
-                      <i class="fa-solid fa-shuffle text-indigo-500"></i> Global Shuffle (Questions & Answers)
+                      <i class="fa-solid fa-shuffle text-indigo-500"></i> Shuffle Questions & Choices
                     </label>
                     <span class="text-[10px] text-slate-500 block">Randomize questions order and all choices/answers</span>
                   </div>
@@ -146,9 +146,9 @@
                 <div class="flex items-center justify-between p-2.5 rounded-lg bg-slate-50 border border-slate-200">
                   <div class="pr-2">
                     <label for="edit-show-feedback" class="font-semibold text-slate-700 text-xs flex items-center gap-1.5 cursor-pointer">
-                      <i class="fa-solid fa-comments text-indigo-500"></i> Enable Assessment Feedback
+                      <i class="fa-solid fa-comments text-indigo-500"></i> Show Question Feedback
                     </label>
-                    <span class="text-[10px] text-slate-500 block">Default evaluation feedback on answers</span>
+                    <span class="text-[10px] text-slate-500 block">Display explanations after each question.</span>
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer shrink-0">
                     <input type="checkbox" id="edit-show-feedback" class="sr-only peer">
@@ -247,7 +247,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 items-start">
                       <div>
                         <label for="edit-results-mode" class="block font-bold text-slate-700 text-xs mb-1">
-                          <i class="fa-solid fa-sliders text-indigo-500"></i> Message Mode
+                          <i class="fa-solid fa-sliders text-indigo-500"></i> Outcome Rules
                         </label>
                         <select id="edit-results-mode" class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 focus:ring-2 focus:ring-indigo-500 font-medium">
                           <option value="completion">Single Completion Message</option>
@@ -258,7 +258,7 @@
 
                       <div id="results-vars-helper-container">
                         <span class="block font-bold text-slate-700 text-xs mb-1">
-                          <i class="fa-solid fa-code text-indigo-500"></i> Insert Variable into Message:
+                          <i class="fa-solid fa-code text-indigo-500"></i> Insert Variables:
                         </span>
                         <div class="flex flex-wrap gap-1">
                           <button type="button" onclick="insertResultVariable('{{points}}')" class="px-1.5 py-0.5 bg-white hover:bg-indigo-50 border border-slate-300 hover:border-indigo-300 rounded font-mono text-[10px] text-indigo-700 cursor-pointer shadow-2xs" title="Learner total points earned">{{points}}</button>
@@ -273,7 +273,7 @@
                     <!-- Dynamic Message Inputs -->
                     <div id="results-completion-msg-container" class="space-y-1">
                       <label for="edit-results-completion-msg" class="block font-bold text-slate-700 text-xs">Completion Message</label>
-                      <textarea id="edit-results-completion-msg" rows="2" placeholder="Thanks for attending the quiz." class="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-xs text-slate-800 focus:ring-2 focus:ring-indigo-500"></textarea>
+                      <textarea id="edit-results-completion-msg" rows="2" placeholder="Thank you for completing the assessment." class="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-xs text-slate-800 focus:ring-2 focus:ring-indigo-500"></textarea>
                     </div>
 
                     <div id="results-passfail-msg-container" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -341,7 +341,7 @@
                   <i class="fa-solid fa-list-check text-indigo-600"></i>
                   Assessment Questions (<span id="question-count">0</span>)
                 </h3>
-                <p class="text-xs text-slate-500">Native question interaction formats matching schema specification.</p>
+                <p class="text-xs text-slate-500">Build questions, define choices, and set correct answers.</p>
               </div>
             </div>
 
@@ -405,9 +405,8 @@
             <!-- Preview Toolbar -->
             <div class="bg-slate-50 border-b border-slate-200 px-4 py-2 flex flex-wrap items-center justify-between gap-2 text-xs">
               <div class="flex items-center gap-2">
-                <span class="text-slate-500 font-medium">Direction:</span>
-                <button id="btn-preview-toggle-rtl" class="px-2 py-0.5 rounded border border-slate-300 font-semibold bg-white hover:bg-slate-100 text-[11px] cursor-pointer">
-                  Toggle RTL / LTR
+                <button id="btn-preview-toggle-rtl" class="px-2.5 py-1 rounded border border-slate-300 font-semibold bg-white hover:bg-slate-100 text-[11px] cursor-pointer flex items-center gap-1.5 text-slate-700">
+                  <i class="fa-solid fa-arrows-left-right text-indigo-500"></i> Layout: LTR / RTL
                 </button>
                 <button id="btn-preview-toggle-shuffle" class="px-2 py-0.5 rounded border border-slate-300 font-semibold bg-white hover:bg-slate-100 text-[11px] cursor-pointer flex items-center gap-1 text-slate-700">
                   <i class="fa-solid fa-shuffle text-indigo-500"></i> <span id="preview-shuffle-label">Shuffle: Off</span>
@@ -458,18 +457,18 @@
 
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
         <div>
-          <h2 class="text-sm font-bold text-slate-900">Assessment JSON Inspector & Export</h2>
-          <p class="text-xs text-slate-500">Inspect, edit, copy, or download the exact assessment schema payload.</p>
+          <h2 class="text-sm font-bold text-slate-900">JSON Code Editor</h2>
+          <p class="text-xs text-slate-500">View, edit, or export the raw JSON schema.</p>
         </div>
         <div class="flex items-center gap-2 flex-wrap">
           <button id="btn-copy-json" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-300 transition-colors cursor-pointer">
             <i class="fa-regular fa-copy"></i> Copy JSON
           </button>
           <button id="btn-apply-json" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 transition-colors cursor-pointer">
-            <i class="fa-solid fa-check"></i> Apply to Builder
+            <i class="fa-solid fa-rotate"></i> Sync to Builder
           </button>
           <button id="btn-download-json-code" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition-colors cursor-pointer">
-            <i class="fa-solid fa-download"></i> Download .json
+            <i class="fa-solid fa-download"></i> Export JSON
           </button>
         </div>
       </div>
@@ -536,12 +535,12 @@
       quizzes: [
         {
           id: "sample-fruit-quiz",
-          title: "Simple Example Quiz",
+          title: "Simple Example Assessment",
           language: "en",
           direction: "ltr",
-          intro_title: "Try the Example Quiz",
-          intro_body: "This is a simple example showing how different quiz question types work. Replace the sample questions with your own content.",
-          success_message: "Great job! You completed the example quiz successfully.",
+          intro_title: "Try the Example Assessment",
+          intro_body: "This is a simple example showing how different assessment question types work. Replace the sample questions with your own content.",
+          success_message: "Great job! You completed the example assessment successfully.",
           failure_message: "Review your answers and try again.",
           passing_score_percent: 80,
           attempts: 1,
@@ -551,14 +550,14 @@
             show: true,
             show_grade: false,
             message_mode: "completion",
-            completion_message: "Thanks for attending the quiz.",
+            completion_message: "Thank you for completing the assessment.",
             success_message: "Well done! You passed with {{points}} out of {{max_points}} points ({{percent}}%).",
             failure_message: "You scored {{percent}}%. You need {{passing_percent}}% to pass.",
             show_result_icon: false,
             show_review_button: true
           },
           assets: {
-            review_button_text: "Review Quiz",
+            review_button_text: "Review Assessment",
             review_button_color: "#F59E0B",
             review_button_text_color: "#FFFFFF",
             primary_button_color: "#2563EB",
@@ -804,7 +803,7 @@
       show: true,
       show_grade: false,
       message_mode: "completion",
-      completion_message: "Thanks for attending the quiz.",
+      completion_message: "Thank you for completing the assessment.",
       success_message: "Well done! You passed with {{points}} out of {{max_points}} points ({{percent}}%).",
       failure_message: "You scored {{percent}}%. You need {{passing_percent}}% to pass.",
       show_result_icon: false,
@@ -1154,9 +1153,9 @@
 
       const isRtlDirection = currentQuiz.direction === 'rtl';
       const existingReviewText = currentQuiz.assets?.review_button_text;
-      let defaultReviewText = isRtlDirection ? "مراجعة الاختبار" : "Review Quiz";
+      let defaultReviewText = isRtlDirection ? "مراجعة التقييم" : "Review Assessment";
       // If the review text is in the opposite language's default, adapt it
-      if (existingReviewText && existingReviewText !== "مراجعة الاختبار" && existingReviewText !== "Review Quiz") {
+      if (existingReviewText && existingReviewText !== "مراجعة التقييم" && existingReviewText !== "Review Assessment" && existingReviewText !== "مراجعة الاختبار" && existingReviewText !== "Review Quiz") {
         defaultReviewText = existingReviewText;
       }
 
@@ -1289,7 +1288,7 @@
             <div class="mt-2 space-y-2 bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
               <div class="flex items-center justify-between border-b border-slate-100 pb-2">
                 <span class="text-xs font-bold text-slate-700 uppercase tracking-wide">
-                  Answer Items (${q.items?.length || 0}) — <span class="text-indigo-600 font-semibold font-sans normal-case">${q.type === 'multiple_choice' ? 'Select 1 correct option' : 'Check all correct options'}</span>
+                  Choices (${q.items?.length || 0}) — <span class="text-indigo-600 font-semibold font-sans normal-case">${q.type === 'multiple_choice' ? 'Select 1 correct option' : 'Check all correct options'}</span>
                 </span>
                 <button type="button" onclick="addChoiceItem(${idx})" class="text-xs font-semibold text-indigo-700 hover:text-indigo-900 bg-indigo-50 hover:bg-indigo-100 px-2.5 py-1 rounded transition-colors flex items-center gap-1 cursor-pointer">
                   <i class="fa-solid fa-plus text-[10px]"></i> Add Option
@@ -1316,7 +1315,7 @@
             <div class="mt-2 space-y-2 bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
               <div class="flex items-center justify-between border-b border-slate-100 pb-2">
                 <span class="text-xs font-bold text-slate-700 uppercase tracking-wide">
-                  Sequence Items (Listed in exact chronological sequence)
+                  Correct Sequence (List in the correct order)
                 </span>
                 <button type="button" onclick="addSequenceItem(${idx})" class="text-xs font-semibold text-indigo-700 hover:text-indigo-900 bg-indigo-50 hover:bg-indigo-100 px-2.5 py-1 rounded transition-colors flex items-center gap-1 cursor-pointer">
                   <i class="fa-solid fa-plus text-[10px]"></i> Add Step
@@ -1344,7 +1343,7 @@
             <div class="mt-2 space-y-2 bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
               <div class="flex items-center justify-between border-b border-slate-100 pb-2">
                 <span class="text-xs font-bold text-slate-700 uppercase tracking-wide">
-                  Matching Items (Left Concept → Right Target Match)
+                  Matching Pairs
                 </span>
                 <button type="button" onclick="addMatchingItem(${idx})" class="text-xs font-semibold text-indigo-700 hover:text-indigo-900 bg-indigo-50 hover:bg-indigo-100 px-2.5 py-1 rounded transition-colors flex items-center gap-1 cursor-pointer">
                   <i class="fa-solid fa-plus text-[10px]"></i> Add Pair
@@ -1354,12 +1353,12 @@
                 ${(q.items || []).map((item, mIdx) => `
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs items-center bg-slate-50 p-2 rounded border border-slate-200">
                     <div class="flex items-center gap-1.5">
-                      <span class="font-bold text-slate-500 text-[10px]">Concept:</span>
-                      <input type="text" value="${(item.text || '').replace(/"/g, '&quot;')}" onchange="updateMatchingItem(${idx}, ${mIdx}, 'text', this.value)" placeholder="Left Concept" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-xs">
+                      <span class="font-bold text-slate-500 text-[10px]">Item:</span>
+                      <input type="text" value="${(item.text || '').replace(/"/g, '&quot;')}" onchange="updateMatchingItem(${idx}, ${mIdx}, 'text', this.value)" placeholder="Item text" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-xs">
                     </div>
                     <div class="flex items-center gap-1.5">
-                      <span class="font-bold text-slate-500 text-[10px]">Target:</span>
-                      <input type="text" value="${(item.target || '').replace(/"/g, '&quot;')}" onchange="updateMatchingItem(${idx}, ${mIdx}, 'target', this.value)" placeholder="Right Target Definition" class="flex-1 bg-white border border-slate-300 rounded px-2 py-1 text-xs">
+                      <span class="font-bold text-slate-500 text-[10px]">Match:</span>
+                      <input type="text" value="${(item.target || '').replace(/"/g, '&quot;')}" onchange="updateMatchingItem(${idx}, ${mIdx}, 'target', this.value)" placeholder="Matching definition" class="flex-1 bg-white border border-slate-300 rounded px-2 py-1 text-xs">
                       <button type="button" onclick="removeMatchingItem(${idx}, ${mIdx})" class="text-slate-400 hover:text-rose-600 p-1 cursor-pointer" title="Delete Pair"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
                   </div>
@@ -1380,13 +1379,13 @@
             <div class="mt-2 space-y-3 bg-white p-3.5 rounded-lg border border-slate-200 shadow-2xs">
               <div>
                 <label class="block font-bold text-slate-700 uppercase tracking-wide text-xs mb-1">
-                  Sentence Body (Use <code class="text-indigo-600 bg-indigo-50 px-1 py-0.5 rounded font-mono">{{word}}</code> to create fill-in blanks)
+                  Sentence Text (Use <code class="text-indigo-600 bg-indigo-50 px-1 py-0.5 rounded font-mono">{{word}}</code> to create fill-in blanks)
                 </label>
                 <textarea rows="2" onchange="updateQuestion(${idx}, 'body', this.value)" placeholder="${bodyPlaceholder}" class="w-full bg-white border border-slate-300 rounded px-3 py-2 text-xs focus:ring-1 focus:ring-indigo-500 leading-relaxed font-sans">${(q.body || '').replace(/"/g, '&quot;')}</textarea>
               </div>
 
               <div>
-                <label class="block font-bold text-slate-700 uppercase tracking-wide text-xs mb-1">Distractors (Optional incorrect words pool, comma-separated)</label>
+                <label class="block font-bold text-slate-700 uppercase tracking-wide text-xs mb-1">Decoy Words (Optional, comma-separated)</label>
                 <input type="text" value="${((q.distractors || []).join(', ')).replace(/"/g, '&quot;')}" onchange="updateDistractors(${idx}, this.value)" placeholder="${distractorsPlaceholder}" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-xs">
               </div>
             </div>
@@ -1476,7 +1475,7 @@
             <div class="flex items-center justify-between p-2 rounded bg-white/80 border border-slate-200/80">
               <div class="pr-2">
                 <label for="q-feedback-toggle-${idx}" class="text-xs font-bold text-slate-700 flex items-center gap-1.5 cursor-pointer">
-                  <i class="fa-solid fa-comment-dots text-indigo-500"></i> Question Feedback
+                  <i class="fa-solid fa-comment-dots text-indigo-500"></i> Show Explanation
                 </label>
                 <span class="text-[10px] text-slate-500 block">Show explanation on submit for this question</span>
               </div>
@@ -1527,7 +1526,7 @@
 
           <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
             <div class="md:col-span-3">
-              <label class="block font-semibold text-slate-700 mb-1">Prompt / Question Text</label>
+              <label class="block font-semibold text-slate-700 mb-1">Question Text</label>
               <input type="text" value="${(q.prompt || '').replace(/"/g, '&quot;')}" onchange="updateQuestion(${idx}, 'prompt', this.value)" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 focus:ring-2 focus:ring-indigo-500 text-sm">
             </div>
             <div>
@@ -2826,7 +2825,7 @@
         currentQuiz = quiz;
         populateBuilderForm(currentQuiz);
         renderLivePreview();
-        showToast('JSON applied to Assessment Builder & Live Preview!', 'success');
+        showToast('JSON synced to Visual Builder & Live Preview!', 'success');
         const builderTab = document.querySelector('.tab-btn[data-tab="builder"]');
         if (builderTab) builderTab.click();
       } catch (e) {

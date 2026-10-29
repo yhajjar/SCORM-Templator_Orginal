@@ -1,0 +1,834 @@
+2026-Oct-29 05:56:38.004839 Docker 27.0.3 with BuildKit and Buildx detected on deployment server (Coolify Server).
+2026-Oct-29 05:56:38.026840 Starting deployment of thevrus/MarkLayer:main to Coolify Server.
+2026-Oct-29 05:56:38.463621 Preparing container with helper image: ghcr.io/coollabsio/coolify-helper:1.0.14
+2026-Oct-29 05:56:38.698659 [CMD]: docker stop --time=30 w10o1699okkpkcksfqeqltwz
+2026-Oct-29 05:56:38.698659 Error response from daemon: No such container: w10o1699okkpkcksfqeqltwz
+2026-Oct-29 05:56:38.932786 [CMD]: docker run -d --network 'coolify' --name w10o1699okkpkcksfqeqltwz --rm -v /root/.docker/config.json:/root/.docker/config.json:ro -v /root/.docker/buildx:/root/.docker/buildx -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/coollabsio/coolify-helper:1.0.14
+2026-Oct-29 05:56:38.932786 bcb26651a3873d2a2948551d5d5f89e5b4d4f8cc5b3da096f7aaa09e0028a015
+2026-Oct-29 05:56:40.442550 [CMD]: docker exec w10o1699okkpkcksfqeqltwz bash -c 'GIT_SSH_COMMAND="ssh -o ConnectTimeout=30 -p 22 -o Port=22 -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" git ls-remote '\''https://github.com/thevrus/MarkLayer'\'' '\''refs/heads/main'\'''
+2026-Oct-29 05:56:40.442550 a9ef90831f25e79a884c7af06367467c60d2d879 refs/heads/main
+2026-Oct-29 05:56:40.752813 Image not found (artvjoxbxndnpobcz4urao90:a9ef90831f25e79a884c7af06367467c60d2d879). Building new image.
+2026-Oct-29 05:56:40.767326 ----------------------------------------
+2026-Oct-29 05:56:40.780248 Importing thevrus/MarkLayer:main (commit sha a9ef90831f25e79a884c7af06367467c60d2d879) to /artifacts/w10o1699okkpkcksfqeqltwz.
+2026-Oct-29 05:56:41.075297 [CMD]: docker exec w10o1699okkpkcksfqeqltwz bash -c 'git -c http.version=HTTP/1.1 clone --depth=1 --recurse-submodules --shallow-submodules -b '\''main'\'' '\''https://github.com/thevrus/MarkLayer'\'' '\''/artifacts/w10o1699okkpkcksfqeqltwz'\'' && cd '\''/artifacts/w10o1699okkpkcksfqeqltwz'\'' && GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" git -c http.version=HTTP/1.1 fetch --depth=1 origin '\''a9ef90831f25e79a884c7af06367467c60d2d879'\'' && git -c http.version=HTTP/1.1 -c advice.detachedHead=false checkout '\''a9ef90831f25e79a884c7af06367467c60d2d879'\'' >/dev/null 2>&1 && cd '\''/artifacts/w10o1699okkpkcksfqeqltwz'\'' && if [ -f .gitmodules ]; then sed -i "s#git@\(.*\):#https://\1/#g" '\''/artifacts/w10o1699okkpkcksfqeqltwz'\''/.gitmodules || true && git -c http.version=HTTP/1.1 submodule sync && GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" git -c http.version=HTTP/1.1 submodule update --init --recursive --depth=1; fi && cd '\''/artifacts/w10o1699okkpkcksfqeqltwz'\'' && GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" git -c http.version=HTTP/1.1 lfs pull'
+2026-Oct-29 05:56:41.075297 Cloning into '/artifacts/w10o1699okkpkcksfqeqltwz'...
+2026-Oct-29 05:56:42.257015 From https://github.com/thevrus/MarkLayer
+2026-Oct-29 05:56:42.257015 * branch a9ef90831f25e79a884c7af06367467c60d2d879 -> FETCH_HEAD
+2026-Oct-29 05:56:43.377687 [CMD]: docker exec w10o1699okkpkcksfqeqltwz bash -c 'cd /artifacts/w10o1699okkpkcksfqeqltwz && git log -1 '\''a9ef90831f25e79a884c7af06367467c60d2d879'\'' --pretty=%B'
+2026-Oct-29 05:56:43.377687 feat(viewer): hover a highlight to open its card
+2026-Oct-29 05:56:43.377687
+2026-Oct-29 05:56:43.377687 Highlights stay pointer-transparent so the page keeps links and text selection;
+2026-Oct-29 05:56:43.377687 hover is a hit-test of the pointer against mark boxes, with a 300ms intent delay
+2026-Oct-29 05:56:43.377687 so reading across a highlight does not throw its card over the text.
+2026-Oct-29 05:56:43.377687
+2026-Oct-29 05:56:43.377687 Co-Authored-By: Claude Opus 5.5 <<REDACTED>>
+2026-Oct-29 05:56:43.761631 Generating nixpacks configuration with: nixpacks plan -f json --env 'NIXPACKS_NODE_VERSION=22' --env 'COOLIFY_URL=https://marker.betalabs.click' --env 'COOLIFY_FQDN=marker.betalabs.click' --env 'COOLIFY_BRANCH=main' --env 'COOLIFY_RESOURCE_UUID=artvjoxbxndnpobcz4urao90' --build-cmd 'bun run --cwd apps/worker build' --start-cmd 'bun run --cwd apps/worker preview --host 0.0.0.0 --port 3000' --install-cmd 'bun install' /artifacts/w10o1699okkpkcksfqeqltwz
+2026-Oct-29 05:56:44.321217 [CMD]: docker exec w10o1699okkpkcksfqeqltwz bash -c 'nixpacks plan -f json --env '\''NIXPACKS_NODE_VERSION=22'\'' --env '\''COOLIFY_URL=https://marker.betalabs.click'\'' --env '\''COOLIFY_FQDN=marker.betalabs.click'\'' --env '\''COOLIFY_BRANCH=main'\'' --env '\''COOLIFY_RESOURCE_UUID=artvjoxbxndnpobcz4urao90'\'' --build-cmd '\''bun run --cwd apps/worker build'\'' --start-cmd '\''bun run --cwd apps/worker preview --host 0.0.0.0 --port 3000'\'' --install-cmd '\''bun install'\'' /artifacts/w10o1699okkpkcksfqeqltwz'
+2026-Oct-29 05:56:44.321217 {
+2026-Oct-29 05:56:44.321217 "providers": [],
+2026-Oct-29 05:56:44.321217 "buildImage": "ghcr.io/railwayapp/nixpacks:ubuntu-1745885067",
+2026-Oct-29 05:56:44.321217 "variables": {
+2026-Oct-29 05:56:44.321217 "CI": "true",
+2026-Oct-29 05:56:44.321217 "COOLIFY_BRANCH": "main",
+2026-Oct-29 05:56:44.321217 "COOLIFY_FQDN": "marker.betalabs.click",
+2026-Oct-29 05:56:44.321217 "COOLIFY_RESOURCE_UUID": "artvjoxbxndnpobcz4urao90",
+2026-Oct-29 05:56:44.321217 "COOLIFY_URL": "https://marker.betalabs.click",
+2026-Oct-29 05:56:44.321217 "NIXPACKS_METADATA": "node",
+2026-Oct-29 05:56:44.321217 "NIXPACKS_NODE_VERSION": "22",
+2026-Oct-29 05:56:44.321217 "NODE_ENV": "production",
+2026-Oct-29 05:56:44.321217 "NPM_CONFIG_PRODUCTION": "false"
+2026-Oct-29 05:56:44.321217 },
+2026-Oct-29 05:56:44.321217 "phases": {
+2026-Oct-29 05:56:44.321217 "build": {
+2026-Oct-29 05:56:44.321217 "dependsOn": [
+2026-Oct-29 05:56:44.321217 "install"
+2026-Oct-29 05:56:44.321217 ],
+2026-Oct-29 05:56:44.321217 "cmds": [
+2026-Oct-29 05:56:44.321217 "bun run --cwd apps/worker build"
+2026-Oct-29 05:56:44.321217 ],
+2026-Oct-29 05:56:44.321217 "cacheDirectories": [
+2026-Oct-29 05:56:44.321217 "node_modules/.cache"
+2026-Oct-29 05:56:44.321217 ]
+2026-Oct-29 05:56:44.321217 },
+2026-Oct-29 05:56:44.321217 "install": {
+2026-Oct-29 05:56:44.321217 "dependsOn": [
+2026-Oct-29 05:56:44.321217 "setup"
+2026-Oct-29 05:56:44.321217 ],
+2026-Oct-29 05:56:44.321217 "cmds": [
+2026-Oct-29 05:56:44.321217 "bun install"
+2026-Oct-29 05:56:44.321217 ],
+2026-Oct-29 05:56:44.321217 "cacheDirectories": [
+2026-Oct-29 05:56:44.321217 "/root/.bun"
+2026-Oct-29 05:56:44.321217 ],
+2026-Oct-29 05:56:44.321217 "paths": [
+2026-Oct-29 05:56:44.321217 "/app/node_modules/.bin"
+2026-Oct-29 05:56:44.321217 ]
+2026-Oct-29 05:56:44.321217 },
+2026-Oct-29 05:56:44.321217 "setup": {
+2026-Oct-29 05:56:44.321217 "nixPkgs": [
+2026-Oct-29 05:56:44.321217 "nodejs_22",
+2026-Oct-29 05:56:44.321217 "bun"
+2026-Oct-29 05:56:44.321217 ],
+2026-Oct-29 05:56:44.321217 "nixOverlays": [
+2026-Oct-29 05:56:44.321217 "https://github.com/railwayapp/nix-npm-overlay/archive/main.tar.gz"
+2026-Oct-29 05:56:44.321217 ],
+2026-Oct-29 05:56:44.321217 "nixpkgsArchive": "31fb21469e34b6b5c7be77b9a35bae43d0c598e9"
+2026-Oct-29 05:56:44.321217 }
+2026-Oct-29 05:56:44.321217 },
+2026-Oct-29 05:56:44.321217 "start": {
+2026-Oct-29 05:56:44.321217 "cmd": "bun run --cwd apps/worker preview --host 0.0.0.0 --port 3000"
+2026-Oct-29 05:56:44.321217 }
+2026-Oct-29 05:56:44.321217 }
+2026-Oct-29 05:56:44.795029 [CMD]: docker exec w10o1699okkpkcksfqeqltwz bash -c 'nixpacks detect /artifacts/w10o1699okkpkcksfqeqltwz'
+2026-Oct-29 05:56:44.795029 node
+2026-Oct-29 05:56:44.816991 Found application type: node.
+2026-Oct-29 05:56:44.843054 If you need further customization, please check the documentation of Nixpacks: https://nixpacks.com/docs/providers/node
+2026-Oct-29 05:56:44.875949 Final Nixpacks plan: {
+2026-Oct-29 05:56:44.875949 "providers": [],
+2026-Oct-29 05:56:44.875949 "buildImage": "ghcr.io\/railwayapp\/nixpacks:ubuntu-1745885067",
+2026-Oct-29 05:56:44.875949 "phases": {
+2026-Oct-29 05:56:44.875949 "build": {
+2026-Oct-29 05:56:44.875949 "dependsOn": [
+2026-Oct-29 05:56:44.875949 "install"
+2026-Oct-29 05:56:44.875949 ],
+2026-Oct-29 05:56:44.875949 "cmds": [
+2026-Oct-29 05:56:44.875949 "bun run --cwd apps\/worker build"
+2026-Oct-29 05:56:44.875949 ],
+2026-Oct-29 05:56:44.875949 "cacheDirectories": [
+2026-Oct-29 05:56:44.875949 "node_modules\/.cache"
+2026-Oct-29 05:56:44.875949 ]
+2026-Oct-29 05:56:44.875949 },
+2026-Oct-29 05:56:44.875949 "install": {
+2026-Oct-29 05:56:44.875949 "dependsOn": [
+2026-Oct-29 05:56:44.875949 "setup"
+2026-Oct-29 05:56:44.875949 ],
+2026-Oct-29 05:56:44.875949 "cmds": [
+2026-Oct-29 05:56:44.875949 "bun install"
+2026-Oct-29 05:56:44.875949 ],
+2026-Oct-29 05:56:44.875949 "cacheDirectories": [
+2026-Oct-29 05:56:44.875949 "\/root\/.bun"
+2026-Oct-29 05:56:44.875949 ],
+2026-Oct-29 05:56:44.875949 "paths": [
+2026-Oct-29 05:56:44.875949 "\/app\/node_modules\/.bin"
+2026-Oct-29 05:56:44.875949 ]
+2026-Oct-29 05:56:44.875949 },
+2026-Oct-29 05:56:44.875949 "setup": {
+2026-Oct-29 05:56:44.875949 "nixPkgs": [
+2026-Oct-29 05:56:44.875949 "nodejs_22",
+2026-Oct-29 05:56:44.875949 "bun"
+2026-Oct-29 05:56:44.875949 ],
+2026-Oct-29 05:56:44.875949 "nixOverlays": [
+2026-Oct-29 05:56:44.875949 "https:\/\/github.com\/railwayapp\/nix-npm-overlay\/archive\/main.tar.gz"
+2026-Oct-29 05:56:44.875949 ],
+2026-Oct-29 05:56:44.875949 "nixpkgsArchive": "31fb21469e34b6b5c7be77b9a35bae43d0c598e9",
+2026-Oct-29 05:56:44.875949 "aptPkgs": [
+2026-Oct-29 05:56:44.875949 "curl",
+2026-Oct-29 05:56:44.875949 "wget"
+2026-Oct-29 05:56:44.875949 ]
+2026-Oct-29 05:56:44.875949 }
+2026-Oct-29 05:56:44.875949 },
+2026-Oct-29 05:56:44.875949 "start": {
+2026-Oct-29 05:56:44.875949 "cmd": "bun run --cwd apps\/worker preview --host 0.0.0.0 --port 3000"
+2026-Oct-29 05:56:44.875949 }
+2026-Oct-29 05:56:44.875949 }
+2026-Oct-29 05:56:45.769459 Creating build-time .env file in /artifacts (outside Docker context).
+2026-Oct-29 05:56:46.110750 ----------------------------------------
+2026-Oct-29 05:56:46.136468 Building docker image started.
+2026-Oct-29 05:56:46.154259 To check the current progress, click on Show Debug Logs.
+2026-Oct-29 05:56:47.046611 [CMD]: docker exec w10o1699okkpkcksfqeqltwz bash -c 'nixpacks build -c /artifacts/thegameplan.json --cache-key '\''artvjoxbxndnpobcz4urao90'\'' --no-error-without-start -n artvjoxbxndnpobcz4urao90:a9ef90831f25e79a884c7af06367467c60d2d879 /artifacts/w10o1699okkpkcksfqeqltwz -o /artifacts/w10o1699okkpkcksfqeqltwz'
+2026-Oct-29 05:56:47.046611
+2026-Oct-29 05:56:47.046611 ╔═════════════════════════════ Nixpacks v1.41.0 ════════════════════════════╗
+2026-Oct-29 05:56:47.046611 ║ setup │ nodejs_22, bun, curl, wget ║
+2026-Oct-29 05:56:47.046611 ║───────────────────────────────────────────────────────────────────────────║
+2026-Oct-29 05:56:47.046611 ║ install │ bun install ║
+2026-Oct-29 05:56:47.046611 ║───────────────────────────────────────────────────────────────────────────║
+2026-Oct-29 05:56:47.046611 ║ build │ bun run --cwd apps/worker build ║
+2026-Oct-29 05:56:47.046611 ║───────────────────────────────────────────────────────────────────────────║
+2026-Oct-29 05:56:47.046611 ║ start │ bun run --cwd apps/worker preview --host 0.0.0.0 --port 3000 ║
+2026-Oct-29 05:56:47.046611 ╚═══════════════════════════════════════════════════════════════════════════╝
+2026-Oct-29 05:56:47.055236 Saved output to:
+2026-Oct-29 05:56:47.055236 /artifacts/w10o1699okkpkcksfqeqltwz
+2026-Oct-29 05:56:47.369874 [CMD]: docker exec w10o1699okkpkcksfqeqltwz bash -c 'cat /artifacts/w10o1699okkpkcksfqeqltwz/.nixpacks/Dockerfile'
+2026-Oct-29 05:56:47.369874 FROM ghcr.io/railwayapp/nixpacks:ubuntu-1745885067
+2026-Oct-29 05:56:47.369874
+2026-Oct-29 05:56:47.369874 ENTRYPOINT ["/bin/bash", "-l", "-c"]
+2026-Oct-29 05:56:47.369874 WORKDIR /app/
+2026-Oct-29 05:56:47.369874
+2026-Oct-29 05:56:47.369874
+2026-Oct-29 05:56:47.369874 COPY .nixpacks/nixpkgs-31fb21469e34b6b5c7be77b9a35bae43d0c598e9.nix .nixpacks/nixpkgs-31fb21469e34b6b5c7be77b9a35bae43d0c598e9.nix
+2026-Oct-29 05:56:47.369874 RUN nix-env -if .nixpacks/nixpkgs-31fb21469e34b6b5c7be77b9a35bae43d0c598e9.nix && nix-collect-garbage -d
+2026-Oct-29 05:56:47.369874 RUN sudo apt-get update && sudo apt-get install -y --no-install-recommends curl wget
+2026-Oct-29 05:56:47.369874
+2026-Oct-29 05:56:47.369874 ARG CI COOLIFY_BRANCH COOLIFY_FQDN COOLIFY_RESOURCE_UUID COOLIFY_URL NIXPACKS_METADATA NIXPACKS_NODE_VERSION NODE_ENV NPM_CONFIG_PRODUCTION
+2026-Oct-29 05:56:47.369874 ENV CI=$CI COOLIFY_BRANCH=$COOLIFY_BRANCH COOLIFY_FQDN=$COOLIFY_FQDN COOLIFY_RESOURCE_UUID=$COOLIFY_RESOURCE_UUID COOLIFY_URL=$COOLIFY_URL NIXPACKS_METADATA=$NIXPACKS_METADATA NIXPACKS_NODE_VERSION=$NIXPACKS_NODE_VERSION NODE_ENV=$NODE_ENV NPM_CONFIG_PRODUCTION=$NPM_CONFIG_PRODUCTION
+2026-Oct-29 05:56:47.369874
+2026-Oct-29 05:56:47.369874 # setup phase
+2026-Oct-29 05:56:47.369874 # noop
+2026-Oct-29 05:56:47.369874
+2026-Oct-29 05:56:47.369874 # install phase
+2026-Oct-29 05:56:47.369874 ENV NIXPACKS_PATH=/app/node_modules/.bin:$NIXPACKS_PATH
+2026-Oct-29 05:56:47.369874 COPY . /app/.
+2026-Oct-29 05:56:47.369874 RUN --mount=type=cache,id=artvjoxbxndnpobcz4urao90-/root/bun,target=/root/.bun bun install
+2026-Oct-29 05:56:47.369874
+2026-Oct-29 05:56:47.369874 # build phase
+2026-Oct-29 05:56:47.369874 COPY . /app/.
+2026-Oct-29 05:56:47.369874 RUN --mount=type=cache,id=artvjoxbxndnpobcz4urao90-node_modules/cache,target=/app/node_modules/.cache bun run --cwd apps/worker build
+2026-Oct-29 05:56:47.369874
+2026-Oct-29 05:56:47.369874
+2026-Oct-29 05:56:47.369874 RUN printf '\nPATH=/app/node_modules/.bin:$PATH' >> /root/.profile
+2026-Oct-29 05:56:47.369874
+2026-Oct-29 05:56:47.369874
+2026-Oct-29 05:56:47.369874 # start
+2026-Oct-29 05:56:47.369874 COPY . /app
+2026-Oct-29 05:56:47.369874
+2026-Oct-29 05:56:47.369874 CMD ["bun run --cwd apps/worker preview --host 0.0.0.0 --port 3000"]
+2026-Oct-29 05:56:48.105863 [CMD]: docker exec w10o1699okkpkcksfqeqltwz bash -c 'cat /artifacts/build.sh'
+2026-Oct-29 05:56:48.105863 cd /artifacts/w10o1699okkpkcksfqeqltwz && set -a && source /artifacts/build-time.env && set +a && DOCKER_BUILDKIT=1 docker build --add-host coolify:10.0.1.5 --add-host coolify-db:10.0.1.2 --add-host coolify-realtime:10.0.1.4 --add-host coolify-redis:10.0.1.3 --network host -f /artifacts/w10o1699okkpkcksfqeqltwz/.nixpacks/Dockerfile --progress plain -t artvjoxbxndnpobcz4urao90:a9ef90831f25e79a884c7af06367467c60d2d879 --build-arg CI --build-arg COOLIFY_BRANCH --build-arg COOLIFY_FQDN --build-arg COOLIFY_RESOURCE_UUID --build-arg COOLIFY_URL --build-arg NIXPACKS_METADATA --build-arg NIXPACKS_NODE_VERSION --build-arg NODE_ENV --build-arg NPM_CONFIG_PRODUCTION --build-arg COOLIFY_BUILD_SECRETS_HASH=69d7c4dfd3a54b876392c85c0142469fbbdbc568eb649e7388e01642c69057f3 --build-arg 'COOLIFY_URL' --build-arg 'COOLIFY_FQDN' --build-arg 'COOLIFY_BRANCH' --build-arg 'COOLIFY_RESOURCE_UUID' /artifacts/w10o1699okkpkcksfqeqltwz
+2026-Oct-29 05:56:49.287844 [CMD]: docker exec w10o1699okkpkcksfqeqltwz bash -c 'bash /artifacts/build.sh'
+2026-Oct-29 05:56:49.287844 #0 building with "default" instance using docker driver
+2026-Oct-29 05:56:49.287844
+2026-Oct-29 05:56:49.287844 #1 [internal] load build definition from Dockerfile
+2026-Oct-29 05:56:49.287844 #1 transferring dockerfile: 1.42kB done
+2026-Oct-29 05:56:49.287844 #1 DONE 0.0s
+2026-Oct-29 05:56:49.287844
+2026-Oct-29 05:56:49.287844 #2 [internal] load metadata for ghcr.io/railwayapp/nixpacks:ubuntu-1745885067
+2026-Oct-29 05:56:49.790175 #2 DONE 0.6s
+2026-Oct-29 05:56:49.902964 #3 [internal] load .dockerignore
+2026-Oct-29 05:56:49.902964 #3 transferring context: 454B done
+2026-Oct-29 05:56:49.902964 #3 DONE 0.1s
+2026-Oct-29 05:56:50.052354 #4 [stage-0 1/11] FROM ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de
+2026-Oct-29 05:56:50.052354 #4 resolve ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de 0.1s done
+2026-Oct-29 05:56:50.209064 #4 ...
+2026-Oct-29 05:56:50.209064
+2026-Oct-29 05:56:50.209064 #5 [internal] load build context
+2026-Oct-29 05:56:50.209064 #5 transferring context: 281.77kB 0.1s done
+2026-Oct-29 05:56:50.209064 #5 DONE 0.1s
+2026-Oct-29 05:56:50.209064
+2026-Oct-29 05:56:50.209064 #4 [stage-0 1/11] FROM ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de
+2026-Oct-29 05:56:50.209064 #4 sha256:75908e6a244aa7c07bd16c59f1a88c832d0735edf545bd28f86d6bee4a5536a0 4.43kB / 4.43kB done
+2026-Oct-29 05:56:50.209064 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 0B / 29.72MB 0.2s
+2026-Oct-29 05:56:50.209064 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 0B / 33.30MB 0.2s
+2026-Oct-29 05:56:50.209064 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 0B / 75.95MB 0.2s
+2026-Oct-29 05:56:50.209064 #4 sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de 1.61kB / 1.61kB done
+2026-Oct-29 05:56:50.209064 #4 sha256:98801a2e9c74b1236de01aa97bc99349f700f53f81d3bbab4411e2a8a9dd316d 1.06kB / 1.06kB done
+2026-Oct-29 05:56:50.311104 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 5.24MB / 29.72MB 0.3s
+2026-Oct-29 05:56:50.521685 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 12.58MB / 29.72MB 0.5s
+2026-Oct-29 05:56:50.521685 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 7.34MB / 33.30MB 0.5s
+2026-Oct-29 05:56:50.709662 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 22.02MB / 29.72MB 0.7s
+2026-Oct-29 05:56:50.709662 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 13.63MB / 33.30MB 0.7s
+2026-Oct-29 05:56:50.709662 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 5.24MB / 75.95MB 0.7s
+2026-Oct-29 05:56:50.829016 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 26.21MB / 29.72MB 0.8s
+2026-Oct-29 05:56:50.829016 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 16.78MB / 33.30MB 0.8s
+2026-Oct-29 05:56:51.038691 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 29.72MB / 29.72MB 0.9s done
+2026-Oct-29 05:56:51.038691 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 20.97MB / 33.30MB 1.0s
+2026-Oct-29 05:56:51.038691 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 9.44MB / 75.95MB 1.0s
+2026-Oct-29 05:56:51.038691 #4 sha256:866b26ac4e4722aa6bd512e1e0c5fa91657dc060ef3eebbbcbd6057625e8f518 0B / 335B 1.0s
+2026-Oct-29 05:56:51.220137 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 27.26MB / 33.30MB 1.2s
+2026-Oct-29 05:56:51.220137 #4 sha256:866b26ac4e4722aa6bd512e1e0c5fa91657dc060ef3eebbbcbd6057625e8f518 335B / 335B 1.0s done
+2026-Oct-29 05:56:51.220137 #4 extracting sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee
+2026-Oct-29 05:56:51.341437 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 29.36MB / 33.30MB 1.3s
+2026-Oct-29 05:56:51.455796 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 31.46MB / 33.30MB 1.4s
+2026-Oct-29 05:56:51.455796 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 14.68MB / 75.95MB 1.4s
+2026-Oct-29 05:56:51.581441 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 33.30MB / 33.30MB 1.5s
+2026-Oct-29 05:56:51.770042 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 33.30MB / 33.30MB 1.5s done
+2026-Oct-29 05:56:51.770042 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 18.87MB / 75.95MB 1.7s
+2026-Oct-29 05:56:52.177643 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 24.12MB / 75.95MB 2.1s
+2026-Oct-29 05:56:52.368797 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 28.31MB / 75.95MB 2.3s
+2026-Oct-29 05:56:52.711139 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 32.45MB / 75.95MB 2.6s
+2026-Oct-29 05:56:52.938444 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 36.69MB / 75.95MB 2.9s
+2026-Oct-29 05:56:53.276220 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 40.89MB / 75.95MB 3.2s
+2026-Oct-29 05:56:53.635161 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 47.98MB / 75.95MB 3.6s
+2026-Oct-29 05:56:53.910042 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 53.48MB / 75.95MB 3.9s
+2026-Oct-29 05:56:54.213545 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 58.72MB / 75.95MB 4.2s
+2026-Oct-29 05:56:54.517755 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 64.69MB / 75.95MB 4.5s
+2026-Oct-29 05:56:54.809009 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 69.21MB / 75.95MB 4.8s
+2026-Oct-29 05:56:55.112550 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 74.45MB / 75.95MB 5.1s
+2026-Oct-29 05:56:55.215351 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 75.95MB / 75.95MB 5.2s done
+2026-Oct-29 05:56:55.515872 #4 extracting sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 4.4s done
+2026-Oct-29 05:56:55.776879 #4 extracting sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913
+2026-Oct-29 05:57:00.816336 #4 extracting sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 5.0s
+2026-Oct-29 05:57:02.673688 #4 extracting sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 6.9s done
+2026-Oct-29 05:57:03.178615 #4 extracting sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06
+2026-Oct-29 05:57:08.184270 #4 extracting sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 5.0s
+2026-Oct-29 05:57:12.228124 #4 extracting sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 8.9s done
+2026-Oct-29 05:57:12.228124 #4 extracting sha256:866b26ac4e4722aa6bd512e1e0c5fa91657dc060ef3eebbbcbd6057625e8f518
+2026-Oct-29 05:57:12.330130 #4 extracting sha256:866b26ac4e4722aa6bd512e1e0c5fa91657dc060ef3eebbbcbd6057625e8f518 done
+2026-Oct-29 05:57:12.330130 #4 DONE 22.4s
+2026-Oct-29 05:57:12.490504 #6 [stage-0 2/11] WORKDIR /app/
+2026-Oct-29 05:57:12.524676 #6 DONE 0.2s
+2026-Oct-29 05:57:12.661985 #7 [stage-0 3/11] COPY .nixpacks/nixpkgs-31fb21469e34b6b5c7be77b9a35bae43d0c598e9.nix .nixpacks/nixpkgs-31fb21469e34b6b5c7be77b9a35bae43d0c598e9.nix
+2026-Oct-29 05:57:12.661985 #7 DONE 0.1s
+2026-Oct-29 05:57:12.661985
+2026-Oct-29 05:57:12.661985 #8 [stage-0 4/11] RUN nix-env -if .nixpacks/nixpkgs-31fb21469e34b6b5c7be77b9a35bae43d0c598e9.nix && nix-collect-garbage -d
+2026-Oct-29 05:57:12.990047 #8 0.331 unpacking 'https://github.com/NixOS/nixpkgs/archive/31fb21469e34b6b5c7be77b9a35bae43d0c598e9.tar.gz' into the Git cache...
+2026-Oct-29 05:58:59.595595 #8 106.9 unpacking 'https://github.com/railwayapp/nix-npm-overlay/archive/main.tar.gz' into the Git cache...
+2026-Oct-29 05:59:01.508469 #8 108.8 installing '31fb21469e34b6b5c7be77b9a35bae43d0c598e9-env'
+2026-Oct-29 05:59:03.222211 #8 110.6 these 3 derivations will be built:
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/r9gjz07l7wrgsbqnc6zwsv7qcpqhn4qw-libraries.drv
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/5gwmg0viyqrrml546dkjvlrzzqpgb2sb-31fb21469e34b6b5c7be77b9a35bae43d0c598e9-env.drv
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/bsmhksnpwm2zqvharks73v9b2p9dfh9f-31fb21469e34b6b5c7be77b9a35bae43d0c598e9-env.drv
+2026-Oct-29 05:59:03.222211 #8 110.6 these 51 paths will be fetched (83.26 MiB download, 392.11 MiB unpacked):
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/jj3knbpiiwbwmplin208h775gzm86rc3-acl-2.3.2
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/2mwbf3viqfqd3lr946slqby9y4k7d9lw-attr-2.5.2
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/cl2gkgnh26mmpka81pc2g5bzjfrili92-bash-5.3p3
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/2j7r5np0vaz4cnqkymp1mqivmjj1x9xl-bash-interactive-5.3p3
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/1dw13nzqf9v8w7jcy205hkp7s7ggi0cc-builder.pl
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/xcl91nw8b1zihm32cwxrqdvaakdnip75-bun-1.3.0
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/j59qq0cqb364kzzrx2r32swfljwklxlq-bzip2-1.0.8
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/xnd0ld68fzj1g1qr19gg0va486snwj22-bzip2-1.0.8-bin
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/00bc157nm93q5fjz551fwk60ihlbilvj-coreutils-9.7
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/c7qlkpbivy2znqxd25prgh9pwjxdri6w-diffutils-3.12
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/wgvx9p6h00aijb9jw95am7095wjzm9mv-ed-1.22.2
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/5qm0vivgc7lmiyfbf5d5a55s40d996bd-file-5.45
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/wq1cxh4s8rz8vs4ssp2z49v96m0nhxhj-findutils-4.10.0
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/swbmnc2s8g2zxzxh62hx1vbbcg6i2r5b-gawk-5.3.2
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/xp989kyfg52803fmkzbz5py35jphcpgd-gcc-14.3.0-lib
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/8b9srwwmrwmh1yl613cwwj7gydl87br6-gcc-14.3.0-libgcc
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/qhw0sp183mqd04x5jp75981kwya64npv-glibc-2.40-66
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/78xkc7z5m21chq7p6awrzgznz83xyml0-gmp-with-cxx-6.3.0
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/2j08vib6rf81vwi6mv3s544wi8rj3xn7-gnu-config-2024-01-01
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/6q57mnfak3q8ss656qgp245qzqvnniyr-gnugrep-3.12
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/lmn1m0giq5bkgdqvdpiryb9a2ly28w6g-gnumake-4.4.1
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/7zy6jnnpqh16b18j6ar289vhwp17msh0-gnused-4.9
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/n09s57l86zxyjydkxagawxpkhh3d3dlh-gnutar-1.35
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/wd4i398mh329vhw93mvmamw3hrnhl257-gzip-1.14
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/hpyfq2n0qr4qj3z1f7d2diw8sql5m84f-icu4c-76.1
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/zc7w3ii28j4kagmlznjdajf0nzd0z60a-icu4c-76.1-dev
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/wwqyxsvmg41q5ckfvvv6wa50nwvz9dv4-libidn2-2.3.8
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/7ndy5820h69n1pgd13viph1qjq6zhhkj-libunistring-1.3
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/2pi0ddhdi6m4fnxw9w42qksz9jk1ja1i-libuv-1.51.0
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/adklcnjpc31n6jabha2qd60y2s9wm133-libuv-1.51.0-dev
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/nkn950vf2i29k4v3z6w9717pjrg483ng-libxcrypt-4.4.38
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/lm4wm3f4ynilxw8yvgqq0hj2ng8ky9xy-ncurses-6.5
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/cwxxy2is6hb4dcqsx8rhnvwic3hfzpcd-nodejs-22.19.0
+2026-Oct-29 05:59:03.222211 #8 110.6 /nix/store/0837wpkjb27cr70bi3pc4g2rw5v9r63l-openssl-3.5.2
+2026-Oct-29 05:59:03.375869 #8 110.6 /nix/store/3kasb92ri5cmp7gwxgj8jgk87pr83y7p-openssl-3.5.2-bin
+2026-Oct-29 05:59:03.375869 #8 110.6 /nix/store/cz9k6nhxjppa1kmyf5npd0g8l89xzilw-openssl-3.5.2-dev
+2026-Oct-29 05:59:03.375869 #8 110.6 /nix/store/r9lif1a0naanr8kdapwnbnr39lr7d56a-patch-2.8
+2026-Oct-29 05:59:03.375869 #8 110.6 /nix/store/0032synbfqd0ylgf9szgp724nmw2fq89-patchelf-0.15.2
+2026-Oct-29 05:59:03.375869 #8 110.6 /nix/store/wqlkv0cjacnm7arca156p3d3vh0kdbmk-pcre2-10.46
+2026-Oct-29 05:59:03.375869 #8 110.6 /nix/store/k2y9xpcdqxma66kag80nhbv0pq2bznzf-perl-5.40.0
+2026-Oct-29 05:59:03.375869 #8 110.6 /nix/store/zqkjn730gir222v3mkp82c1pmqfb2j0l-readline-8.3p1
+2026-Oct-29 05:59:03.375869 #8 110.6 /nix/store/jqrf546vxc6nzf4575m4am3w4ywq765i-sqlite-3.50.4
+2026-Oct-29 05:59:03.375869 #8 110.6 /nix/store/7p5yg8li32wgxxsydbzblnjgs8hvl9wd-sqlite-3.50.4-bin
+2026-Oct-29 05:59:03.375869 #8 110.6 /nix/store/3a7y8k7fh6xldnpvd3bx3ygnx5044xw6-sqlite-3.50.4-dev
+2026-Oct-29 05:59:03.375869 #8 110.6 /nix/store/x1d0ad98h92lp5g59pfryjzk4ca84i3r-stdenv-linux
+2026-Oct-29 05:59:03.375869 #8 110.6 /nix/store/ka03rs4a3bybjhqpvg388sdszbybvbff-update-autotools-gnu-config-scripts-hook
+2026-Oct-29 05:59:03.375869 #8 110.6 /nix/store/0ja5daq2yay3svg6f48spyfby7pgy5bm-xgcc-14.3.0-libgcc
+2026-Oct-29 05:59:03.375869 #8 110.6 /nix/store/swqs30pymm3ymv2qnkzs353xmpgr80jr-xz-5.8.1
+2026-Oct-29 05:59:03.375869 #8 110.6 /nix/store/77jyjqy2b9l2a0139im9ds28zkdv0ybc-xz-5.8.1-bin
+2026-Oct-29 05:59:03.375869 #8 110.6 /nix/store/6qi8skh85ci2k9gvl27nnh3kiy32qnsz-zlib-1.3.1
+2026-Oct-29 05:59:03.375869 #8 110.6 /nix/store/6fqij3sy1mlsnq1n679bzbl5bkqs7yvk-zlib-1.3.1-dev
+2026-Oct-29 05:59:03.375869 #8 110.6 copying path '/nix/store/1dw13nzqf9v8w7jcy205hkp7s7ggi0cc-builder.pl' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:03.375869 #8 110.6 copying path '/nix/store/2j08vib6rf81vwi6mv3s544wi8rj3xn7-gnu-config-2024-01-01' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:03.375869 #8 110.6 copying path '/nix/store/7ndy5820h69n1pgd13viph1qjq6zhhkj-libunistring-1.3' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:03.375869 #8 110.6 copying path '/nix/store/0ja5daq2yay3svg6f48spyfby7pgy5bm-xgcc-14.3.0-libgcc' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:03.375869 #8 110.6 copying path '/nix/store/8b9srwwmrwmh1yl613cwwj7gydl87br6-gcc-14.3.0-libgcc' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:03.375869 #8 110.6 copying path '/nix/store/ka03rs4a3bybjhqpvg388sdszbybvbff-update-autotools-gnu-config-scripts-hook' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:03.375869 #8 110.7 copying path '/nix/store/wwqyxsvmg41q5ckfvvv6wa50nwvz9dv4-libidn2-2.3.8' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:03.581969 #8 110.8 copying path '/nix/store/qhw0sp183mqd04x5jp75981kwya64npv-glibc-2.40-66' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:04.786313 #8 112.1 copying path '/nix/store/2mwbf3viqfqd3lr946slqby9y4k7d9lw-attr-2.5.2' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.023436 #8 112.1 copying path '/nix/store/wgvx9p6h00aijb9jw95am7095wjzm9mv-ed-1.22.2' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.023436 #8 112.1 copying path '/nix/store/xcl91nw8b1zihm32cwxrqdvaakdnip75-bun-1.3.0' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.023436 #8 112.1 copying path '/nix/store/lm4wm3f4ynilxw8yvgqq0hj2ng8ky9xy-ncurses-6.5' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.023436 #8 112.1 copying path '/nix/store/2pi0ddhdi6m4fnxw9w42qksz9jk1ja1i-libuv-1.51.0' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.041494 #8 112.1 copying path '/nix/store/cl2gkgnh26mmpka81pc2g5bzjfrili92-bash-5.3p3' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.041494 #8 112.1 copying path '/nix/store/7zy6jnnpqh16b18j6ar289vhwp17msh0-gnused-4.9' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.041494 #8 112.1 copying path '/nix/store/lmn1m0giq5bkgdqvdpiryb9a2ly28w6g-gnumake-4.4.1' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.041494 #8 112.1 copying path '/nix/store/xp989kyfg52803fmkzbz5py35jphcpgd-gcc-14.3.0-lib' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.041494 #8 112.1 copying path '/nix/store/swqs30pymm3ymv2qnkzs353xmpgr80jr-xz-5.8.1' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.041494 #8 112.1 copying path '/nix/store/swbmnc2s8g2zxzxh62hx1vbbcg6i2r5b-gawk-5.3.2' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.041494 #8 112.1 copying path '/nix/store/j59qq0cqb364kzzrx2r32swfljwklxlq-bzip2-1.0.8' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.041494 #8 112.1 copying path '/nix/store/0837wpkjb27cr70bi3pc4g2rw5v9r63l-openssl-3.5.2' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.041494 #8 112.1 copying path '/nix/store/6qi8skh85ci2k9gvl27nnh3kiy32qnsz-zlib-1.3.1' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.041494 #8 112.1 copying path '/nix/store/wqlkv0cjacnm7arca156p3d3vh0kdbmk-pcre2-10.46' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.041494 #8 112.1 copying path '/nix/store/nkn950vf2i29k4v3z6w9717pjrg483ng-libxcrypt-4.4.38' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.041494 #8 112.2 copying path '/nix/store/jj3knbpiiwbwmplin208h775gzm86rc3-acl-2.3.2' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.041494 #8 112.2 copying path '/nix/store/adklcnjpc31n6jabha2qd60y2s9wm133-libuv-1.51.0-dev' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.064783 #8 112.4 copying path '/nix/store/xnd0ld68fzj1g1qr19gg0va486snwj22-bzip2-1.0.8-bin' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.211506 #8 112.4 copying path '/nix/store/jqrf546vxc6nzf4575m4am3w4ywq765i-sqlite-3.50.4' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.211506 #8 112.4 copying path '/nix/store/5qm0vivgc7lmiyfbf5d5a55s40d996bd-file-5.45' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.241922 #8 112.4 copying path '/nix/store/7p5yg8li32wgxxsydbzblnjgs8hvl9wd-sqlite-3.50.4-bin' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.241922 #8 112.4 copying path '/nix/store/r9lif1a0naanr8kdapwnbnr39lr7d56a-patch-2.8' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.241922 #8 112.4 copying path '/nix/store/6fqij3sy1mlsnq1n679bzbl5bkqs7yvk-zlib-1.3.1-dev' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.241922 #8 112.4 copying path '/nix/store/n09s57l86zxyjydkxagawxpkhh3d3dlh-gnutar-1.35' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.241922 #8 112.6 copying path '/nix/store/77jyjqy2b9l2a0139im9ds28zkdv0ybc-xz-5.8.1-bin' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.381740 #8 112.6 copying path '/nix/store/wd4i398mh329vhw93mvmamw3hrnhl257-gzip-1.14' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.381740 #8 112.7 copying path '/nix/store/6q57mnfak3q8ss656qgp245qzqvnniyr-gnugrep-3.12' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:05.393716
+2026-Oct-29 05:59:06.139309 #8 113.5 copying path '/nix/store/3a7y8k7fh6xldnpvd3bx3ygnx5044xw6-sqlite-3.50.4-dev' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:06.242902 #8 113.6 copying path '/nix/store/0032synbfqd0ylgf9szgp724nmw2fq89-patchelf-0.15.2' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:06.242902 #8 113.6 copying path '/nix/store/hpyfq2n0qr4qj3z1f7d2diw8sql5m84f-icu4c-76.1' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:06.379402 #8 113.6 copying path '/nix/store/78xkc7z5m21chq7p6awrzgznz83xyml0-gmp-with-cxx-6.3.0' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:06.379402 #8 113.7 copying path '/nix/store/00bc157nm93q5fjz551fwk60ihlbilvj-coreutils-9.7' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:06.491729 #8 113.8 copying path '/nix/store/3kasb92ri5cmp7gwxgj8jgk87pr83y7p-openssl-3.5.2-bin' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:06.663203 #8 114.0 copying path '/nix/store/cz9k6nhxjppa1kmyf5npd0g8l89xzilw-openssl-3.5.2-dev' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:06.766184 #8 114.1 copying path '/nix/store/c7qlkpbivy2znqxd25prgh9pwjxdri6w-diffutils-3.12' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:06.922241 #8 114.1 copying path '/nix/store/wq1cxh4s8rz8vs4ssp2z49v96m0nhxhj-findutils-4.10.0' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:06.922241 #8 114.1 copying path '/nix/store/k2y9xpcdqxma66kag80nhbv0pq2bznzf-perl-5.40.0' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:07.111006 #8 114.5 copying path '/nix/store/x1d0ad98h92lp5g59pfryjzk4ca84i3r-stdenv-linux' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:07.283415 #8 114.6 building '/nix/store/r9gjz07l7wrgsbqnc6zwsv7qcpqhn4qw-libraries.drv'...
+2026-Oct-29 05:59:08.771320 #8 116.1 building '/nix/store/5gwmg0viyqrrml546dkjvlrzzqpgb2sb-31fb21469e34b6b5c7be77b9a35bae43d0c598e9-env.drv'...
+2026-Oct-29 05:59:08.814216
+2026-Oct-29 05:59:08.949079 #8 116.1 copying path '/nix/store/zqkjn730gir222v3mkp82c1pmqfb2j0l-readline-8.3p1' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:08.949079 #8 116.3 copying path '/nix/store/2j7r5np0vaz4cnqkymp1mqivmjj1x9xl-bash-interactive-5.3p3' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:10.159893 #8 117.5 copying path '/nix/store/zc7w3ii28j4kagmlznjdajf0nzd0z60a-icu4c-76.1-dev' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:10.511167 #8 117.8 copying path '/nix/store/cwxxy2is6hb4dcqsx8rhnvwic3hfzpcd-nodejs-22.19.0' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:15.126055 #8 122.5 building '/nix/store/bsmhksnpwm2zqvharks73v9b2p9dfh9f-31fb21469e34b6b5c7be77b9a35bae43d0c598e9-env.drv'...
+2026-Oct-29 05:59:15.331226 #8 122.7 created 16 symlinks in user environment
+2026-Oct-29 05:59:15.552061 #8 122.9 building '/nix/store/m6x9hm9ijmjggzr05h95jc3biw72flsw-user-environment.drv'...
+2026-Oct-29 05:59:15.965055 #8 123.3 removing old generations of profile /nix/var/nix/profiles/per-user/root/profile
+2026-Oct-29 05:59:15.965055 #8 123.3 removing profile version 1
+2026-Oct-29 05:59:15.965055 #8 123.3 removing old generations of profile /nix/var/nix/profiles/per-user/root/channels
+2026-Oct-29 05:59:15.965055 #8 123.3 removing old generations of profile /nix/var/nix/profiles/per-user/root/profile
+2026-Oct-29 05:59:15.965055 #8 123.3 removing old generations of profile /nix/var/nix/profiles/per-user/root/channels
+2026-Oct-29 05:59:15.965055 #8 123.3 finding garbage collector roots...
+2026-Oct-29 05:59:15.965055 #8 123.3 removing stale link from '/nix/var/nix/gcroots/auto/lzjbmb2ry0z7lma2fvpqprb12921pnb5' to '/nix/var/nix/profiles/per-user/root/profile-1-link'
+2026-Oct-29 05:59:16.069807 #8 123.3 deleting garbage...
+2026-Oct-29 05:59:16.080563 #8 123.3 deleting '/nix/store/a9qf4wwhympzs35ncp80r185j6a21w07-user-environment'
+2026-Oct-29 05:59:16.080563 #8 123.4 deleting '/nix/store/253kwn1730vnay87xkjgxa2v97w3y079-user-environment.drv'
+2026-Oct-29 05:59:16.080563 #8 123.4 deleting '/nix/store/hn5mrh362n52x8wwab9s1v6bgn4n5c94-env-manifest.nix'
+2026-Oct-29 05:59:16.080563 #8 123.4 deleting '/nix/store/x1d0ad98h92lp5g59pfryjzk4ca84i3r-stdenv-linux'
+2026-Oct-29 05:59:16.080563 #8 123.4 deleting '/nix/store/77jyjqy2b9l2a0139im9ds28zkdv0ybc-xz-5.8.1-bin'
+2026-Oct-29 05:59:16.080563 #8 123.4 deleting '/nix/store/wq1cxh4s8rz8vs4ssp2z49v96m0nhxhj-findutils-4.10.0'
+2026-Oct-29 05:59:16.080563 #8 123.4 deleting '/nix/store/n09s57l86zxyjydkxagawxpkhh3d3dlh-gnutar-1.35'
+2026-Oct-29 05:59:16.080563 #8 123.4 deleting '/nix/store/swqs30pymm3ymv2qnkzs353xmpgr80jr-xz-5.8.1'
+2026-Oct-29 05:59:16.080563 #8 123.4 deleting '/nix/store/c7qlkpbivy2znqxd25prgh9pwjxdri6w-diffutils-3.12'
+2026-Oct-29 05:59:16.080563 #8 123.4 deleting '/nix/store/2w56d3yplcdfg19kddn8gd194yj4yzpp-source'
+2026-Oct-29 05:59:22.915949 #8 130.2 deleting '/nix/store/p9wgp8bdxlk4sg80lc8rwdbdcqcxc3cz-source'
+2026-Oct-29 05:59:23.061017 #8 130.3 deleting '/nix/store/k2y9xpcdqxma66kag80nhbv0pq2bznzf-perl-5.40.0'
+2026-Oct-29 05:59:23.061017 #8 130.4 deleting '/nix/store/r9lif1a0naanr8kdapwnbnr39lr7d56a-patch-2.8'
+2026-Oct-29 05:59:23.274305 #8 130.4 deleting '/nix/store/fzwylivnpgh93d0f86wczhqgyw4168z9-libraries'
+2026-Oct-29 05:59:23.274305 #8 130.4 deleting '/nix/store/xnd0ld68fzj1g1qr19gg0va486snwj22-bzip2-1.0.8-bin'
+2026-Oct-29 05:59:23.274305 #8 130.4 deleting '/nix/store/5qm0vivgc7lmiyfbf5d5a55s40d996bd-file-5.45'
+2026-Oct-29 05:59:23.274305 #8 130.4 deleting '/nix/store/6q57mnfak3q8ss656qgp245qzqvnniyr-gnugrep-3.12'
+2026-Oct-29 05:59:23.274305 #8 130.4 deleting '/nix/store/wgvx9p6h00aijb9jw95am7095wjzm9mv-ed-1.22.2'
+2026-Oct-29 05:59:23.274305 #8 130.4 deleting '/nix/store/swbmnc2s8g2zxzxh62hx1vbbcg6i2r5b-gawk-5.3.2'
+2026-Oct-29 05:59:23.274305 #8 130.4 deleting '/nix/store/ka03rs4a3bybjhqpvg388sdszbybvbff-update-autotools-gnu-config-scripts-hook'
+2026-Oct-29 05:59:23.274305 #8 130.4 deleting '/nix/store/2j08vib6rf81vwi6mv3s544wi8rj3xn7-gnu-config-2024-01-01'
+2026-Oct-29 05:59:23.274305 #8 130.4 deleting '/nix/store/wqlkv0cjacnm7arca156p3d3vh0kdbmk-pcre2-10.46'
+2026-Oct-29 05:59:23.274305 #8 130.4 deleting '/nix/store/wd4i398mh329vhw93mvmamw3hrnhl257-gzip-1.14'
+2026-Oct-29 05:59:23.274305 #8 130.4 deleting '/nix/store/7zy6jnnpqh16b18j6ar289vhwp17msh0-gnused-4.9'
+2026-Oct-29 05:59:23.274305 #8 130.4 deleting '/nix/store/lmn1m0giq5bkgdqvdpiryb9a2ly28w6g-gnumake-4.4.1'
+2026-Oct-29 05:59:23.274305 #8 130.5 deleting '/nix/store/i6c20krnakaiv6zbraxl2q60hn8rmjwq-exec.drv'
+2026-Oct-29 05:59:23.282344 #8 130.5 deleting '/nix/store/0032synbfqd0ylgf9szgp724nmw2fq89-patchelf-0.15.2'
+2026-Oct-29 05:59:23.282344 #8 130.5 deleting '/nix/store/1dw13nzqf9v8w7jcy205hkp7s7ggi0cc-builder.pl'
+2026-Oct-29 05:59:23.282344 #8 130.5 deleting '/nix/store/nkn950vf2i29k4v3z6w9717pjrg483ng-libxcrypt-4.4.38'
+2026-Oct-29 05:59:23.282344 #8 130.5 deleting '/nix/store/j59qq0cqb364kzzrx2r32swfljwklxlq-bzip2-1.0.8'
+2026-Oct-29 05:59:23.282344 #8 130.5 deleting unused links...
+2026-Oct-29 05:59:29.080070 #8 136.4 note: currently hard linking saves -0.77 MiB
+2026-Oct-29 05:59:29.267564 #8 136.5 30 store paths deleted, 244.82 MiB freed
+2026-Oct-29 05:59:29.371184 #8 DONE 136.7s
+2026-Oct-29 05:59:29.529487
+2026-Oct-29 05:59:29.558811 #9 [stage-0 5/11] RUN sudo apt-get update && sudo apt-get install -y --no-install-recommends curl wget
+2026-Oct-29 05:59:30.042029 #9 0.664 Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-Oct-29 05:59:30.224941 #9 0.697 Get:2 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+2026-Oct-29 05:59:30.594531 #9 1.211 Get:3 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1412 kB]
+2026-Oct-29 05:59:30.825996 #9 1.295 Get:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-Oct-29 05:59:30.825996 #9 1.446 Get:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-Oct-29 05:59:30.979208 #9 1.602 Get:6 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+2026-Oct-29 05:59:30.998293
+2026-Oct-29 05:59:31.135807 #9 1.643 Get:7 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+2026-Oct-29 05:59:31.166850 #9 1.660 Get:8 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1550 kB]
+2026-Oct-29 05:59:31.166850 #9 1.758 Get:9 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [55.6 kB]
+2026-Oct-29 05:59:31.294808 #9 1.763 Get:10 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [2122 kB]
+2026-Oct-29 05:59:31.356011 #9 1.979 Get:11 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+2026-Oct-29 05:59:31.373677
+2026-Oct-29 05:59:32.160760 #9 2.783 Get:12 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+2026-Oct-29 05:59:32.342901 #9 2.800 Get:13 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [2235 kB]
+2026-Oct-29 05:59:32.381648 #9 2.858 Get:14 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1740 kB]
+2026-Oct-29 05:59:32.381648 #9 2.962 Get:15 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [61.7 kB]
+2026-Oct-29 05:59:32.576561 #9 2.983 Get:16 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2172 kB]
+2026-Oct-29 05:59:32.576561 #9 3.044 Get:17 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [669 B]
+2026-Oct-29 05:59:32.576561 #9 3.046 Get:18 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
+2026-Oct-29 05:59:32.576561 #9 3.047 Get:19 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.0 kB]
+2026-Oct-29 05:59:34.534820 #9 5.158 Fetched 33.6 MB in 5s (7204 kB/s)
+2026-Oct-29 05:59:34.534820 #9 5.158 Reading package lists...
+2026-Oct-29 05:59:37.225454
+2026-Oct-29 05:59:37.458288 #9 7.931 Reading package lists...
+2026-Oct-29 05:59:40.167426
+2026-Oct-29 05:59:40.352037 #9 10.82 Building dependency tree...
+2026-Oct-29 05:59:40.703214 #9 11.33 Reading state information...
+2026-Oct-29 05:59:40.853713
+2026-Oct-29 05:59:41.634620 #9 12.26 The following additional packages will be installed:
+2026-Oct-29 05:59:41.758053 #9 12.26 libcurl3t64-gnutls libcurl4t64
+2026-Oct-29 05:59:41.758053 #9 12.38 The following NEW packages will be installed:
+2026-Oct-29 05:59:41.758053 #9 12.38 wget
+2026-Oct-29 05:59:41.913656 #9 12.38 The following packages will be upgraded:
+2026-Oct-29 05:59:41.913656 #9 12.39 curl libcurl3t64-gnutls libcurl4t64
+2026-Oct-29 05:59:42.061642 #9 12.66 3 upgraded, 1 newly installed, 0 to remove and 68 not upgraded.
+2026-Oct-29 05:59:42.061642 #9 12.66 Need to get 1241 kB of archives.
+2026-Oct-29 05:59:42.061642 #9 12.66 After this operation, 947 kB of additional disk space will be used.
+2026-Oct-29 05:59:42.061642 #9 12.66 Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 wget amd64 1.21.4-1ubuntu4.5 [334 kB]
+2026-Oct-29 05:59:42.640216 #9 13.26 Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 curl amd64 8.5.0-2ubuntu10.16 [226 kB]
+2026-Oct-29 05:59:42.791573 #9 13.32 Get:3 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcurl4t64 amd64 8.5.0-2ubuntu10.16 [344 kB]
+2026-Oct-29 05:59:42.791573 #9 13.41 Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcurl3t64-gnutls amd64 8.5.0-2ubuntu10.16 [337 kB]
+2026-Oct-29 05:59:43.277812 #9 13.90 debconf: delaying package configuration, since apt-utils is not installed
+2026-Oct-29 05:59:43.380320 #9 14.00 Fetched 1241 kB in 1s (1180 kB/s)
+2026-Oct-29 05:59:43.491397 #9 14.07 Selecting previously unselected package wget.
+2026-Oct-29 05:59:43.491397 #9 14.07 (Reading database ... (Reading database ... 5% (Reading database ... 10% (Reading database ... 15% (Reading database ... 20% (Reading database ... 25% (Reading database ... 30% (Reading database ... 35% (Reading database ... 40% (Reading database ... 45% (Reading database ... 50% (Reading database ... 55% (Reading database ... 60% (Reading database ... 65% (Reading database ... 70% (Reading database ... 75% (Reading database ... 80% (Reading database ... 85%
+2026-Oct-29 05:59:43.626355 (Reading database ... 90% (Reading database ... 95% (Reading database ... 100% (Reading database ... 9511 files and directories currently installed.)
+2026-Oct-29 05:59:43.626355 #9 14.17 Preparing to unpack .../wget_1.21.4-1ubuntu4.5_amd64.deb ...
+2026-Oct-29 05:59:43.626355 #9 14.17 Unpacking wget (1.21.4-1ubuntu4.5) ...
+2026-Oct-29 05:59:43.626355 #9 14.25 Preparing to unpack .../curl_8.5.0-2ubuntu10.16_amd64.deb ...
+2026-Oct-29 05:59:43.745822 #9 14.30 Unpacking curl (8.5.0-2ubuntu10.16) over (8.5.0-2ubuntu10.6) ...
+2026-Oct-29 05:59:43.745822 #9 14.37 Preparing to unpack .../libcurl4t64_8.5.0-2ubuntu10.16_amd64.deb ...
+2026-Oct-29 05:59:43.856939 #9 14.38 Unpacking libcurl4t64:amd64 (8.5.0-2ubuntu10.16) over (8.5.0-2ubuntu10.6) ...
+2026-Oct-29 05:59:43.900202 #9 14.48 Preparing to unpack .../libcurl3t64-gnutls_8.5.0-2ubuntu10.16_amd64.deb ...
+2026-Oct-29 05:59:44.011246 #9 14.55 Unpacking libcurl3t64-gnutls:amd64 (8.5.0-2ubuntu10.16) over (8.5.0-2ubuntu10.6) ...
+2026-Oct-29 05:59:44.011246 #9 14.63 Setting up wget (1.21.4-1ubuntu4.5) ...
+2026-Oct-29 05:59:44.197312 #9 14.65 Setting up libcurl4t64:amd64 (8.5.0-2ubuntu10.16) ...
+2026-Oct-29 05:59:44.197312 #9 14.66 Setting up libcurl3t64-gnutls:amd64 (8.5.0-2ubuntu10.16) ...
+2026-Oct-29 05:59:44.197312 #9 14.66 Setting up curl (8.5.0-2ubuntu10.16) ...
+2026-Oct-29 05:59:44.197312 #9 14.67 Processing triggers for libc-bin (2.39-0ubuntu8.4) ...
+2026-Oct-29 05:59:44.296076 #9 DONE 14.9s
+2026-Oct-29 05:59:44.408412 #10 [stage-0 6/11] COPY . /app/.
+2026-Oct-29 05:59:44.408412 #10 DONE 0.1s
+2026-Oct-29 05:59:44.567875 #11 [stage-0 7/11] RUN --mount=type=cache,id=artvjoxbxndnpobcz4urao90-/root/bun,target=/root/.bun bun install
+2026-Oct-29 05:59:44.723169 #11 ERROR: process "/bin/bash -ol pipefail -c bun install" did not complete successfully: exit code: 132
+2026-Oct-29 05:59:44.790110 ------
+2026-Oct-29 05:59:44.790110 > [stage-0 7/11] RUN --mount=type=cache,id=artvjoxbxndnpobcz4urao90-/root/bun,target=/root/.bun bun install:
+2026-Oct-29 05:59:44.790110 ------
+2026-Oct-29 05:59:44.806937 1 warning found (use docker --debug to expand):
+2026-Oct-29 05:59:44.806937 - UndefinedVar: Usage of undefined variable '$NIXPACKS_PATH' (line 18)
+2026-Oct-29 05:59:44.829046 Dockerfile:20
+2026-Oct-29 05:59:44.829046 --------------------
+2026-Oct-29 05:59:44.829046 18 | ENV NIXPACKS_PATH=/app/node_modules/.bin:$NIXPACKS_PATH
+2026-Oct-29 05:59:44.829046 19 | COPY . /app/.
+2026-Oct-29 05:59:44.829046 20 | >>> RUN --mount=type=cache,id=artvjoxbxndnpobcz4urao90-/root/bun,target=/root/.bun bun install
+2026-Oct-29 05:59:44.829046 21 |
+2026-Oct-29 05:59:44.829046 22 | # build phase
+2026-Oct-29 05:59:44.829046 --------------------
+2026-Oct-29 05:59:44.829046 ERROR: failed to build: failed to solve: process "/bin/bash -ol pipefail -c bun install" did not complete successfully: exit code: 132
+2026-Oct-29 05:59:44.846249 exit status 1
+2026-Oct-29 05:59:44.997526 ========================================
+2026-Oct-29 05:59:45.023682 Deployment failed: Command execution failed (exit code 1): docker exec w10o1699okkpkcksfqeqltwz bash -c 'bash /artifacts/build.sh'
+2026-Oct-29 05:59:45.023682 Error: #0 building with "default" instance using docker driver
+2026-Oct-29 05:59:45.023682
+2026-Oct-29 05:59:45.023682 #1 [internal] load build definition from Dockerfile
+2026-Oct-29 05:59:45.023682 #1 transferring dockerfile: 1.42kB done
+2026-Oct-29 05:59:45.023682 #1 DONE 0.0s
+2026-Oct-29 05:59:45.023682
+2026-Oct-29 05:59:45.023682 #2 [internal] load metadata for ghcr.io/railwayapp/nixpacks:ubuntu-1745885067
+2026-Oct-29 05:59:45.023682 #2 DONE 0.6s
+2026-Oct-29 05:59:45.023682
+2026-Oct-29 05:59:45.023682 #3 [internal] load .dockerignore
+2026-Oct-29 05:59:45.023682 #3 transferring context: 454B done
+2026-Oct-29 05:59:45.023682 #3 DONE 0.1s
+2026-Oct-29 05:59:45.023682
+2026-Oct-29 05:59:45.023682 #4 [stage-0 1/11] FROM ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de
+2026-Oct-29 05:59:45.023682 #4 resolve ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de 0.1s done
+2026-Oct-29 05:59:45.023682 #4 ...
+2026-Oct-29 05:59:45.023682
+2026-Oct-29 05:59:45.023682 #5 [internal] load build context
+2026-Oct-29 05:59:45.023682 #5 transferring context: 281.77kB 0.1s done
+2026-Oct-29 05:59:45.023682 #5 DONE 0.1s
+2026-Oct-29 05:59:45.023682
+2026-Oct-29 05:59:45.023682 #4 [stage-0 1/11] FROM ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de
+2026-Oct-29 05:59:45.023682 #4 sha256:75908e6a244aa7c07bd16c59f1a88c832d0735edf545bd28f86d6bee4a5536a0 4.43kB / 4.43kB done
+2026-Oct-29 05:59:45.023682 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 0B / 29.72MB 0.2s
+2026-Oct-29 05:59:45.023682 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 0B / 33.30MB 0.2s
+2026-Oct-29 05:59:45.023682 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 0B / 75.95MB 0.2s
+2026-Oct-29 05:59:45.023682 #4 sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de 1.61kB / 1.61kB done
+2026-Oct-29 05:59:45.023682 #4 sha256:98801a2e9c74b1236de01aa97bc99349f700f53f81d3bbab4411e2a8a9dd316d 1.06kB / 1.06kB done
+2026-Oct-29 05:59:45.023682 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 5.24MB / 29.72MB 0.3s
+2026-Oct-29 05:59:45.023682 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 12.58MB / 29.72MB 0.5s
+2026-Oct-29 05:59:45.023682 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 7.34MB / 33.30MB 0.5s
+2026-Oct-29 05:59:45.023682 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 22.02MB / 29.72MB 0.7s
+2026-Oct-29 05:59:45.023682 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 13.63MB / 33.30MB 0.7s
+2026-Oct-29 05:59:45.023682 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 5.24MB / 75.95MB 0.7s
+2026-Oct-29 05:59:45.023682 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 26.21MB / 29.72MB 0.8s
+2026-Oct-29 05:59:45.023682 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 16.78MB / 33.30MB 0.8s
+2026-Oct-29 05:59:45.023682 #4 sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 29.72MB / 29.72MB 0.9s done
+2026-Oct-29 05:59:45.023682 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 20.97MB / 33.30MB 1.0s
+2026-Oct-29 05:59:45.023682 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 9.44MB / 75.95MB 1.0s
+2026-Oct-29 05:59:45.023682 #4 sha256:866b26ac4e4722aa6bd512e1e0c5fa91657dc060ef3eebbbcbd6057625e8f518 0B / 335B 1.0s
+2026-Oct-29 05:59:45.023682 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 27.26MB / 33.30MB 1.2s
+2026-Oct-29 05:59:45.023682 #4 sha256:866b26ac4e4722aa6bd512e1e0c5fa91657dc060ef3eebbbcbd6057625e8f518 335B / 335B 1.0s done
+2026-Oct-29 05:59:45.023682 #4 extracting sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee
+2026-Oct-29 05:59:45.023682 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 29.36MB / 33.30MB 1.3s
+2026-Oct-29 05:59:45.023682 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 31.46MB / 33.30MB 1.4s
+2026-Oct-29 05:59:45.023682 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 14.68MB / 75.95MB 1.4s
+2026-Oct-29 05:59:45.023682 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 33.30MB / 33.30MB 1.5s
+2026-Oct-29 05:59:45.023682 #4 sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 33.30MB / 33.30MB 1.5s done
+2026-Oct-29 05:59:45.023682 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 18.87MB / 75.95MB 1.7s
+2026-Oct-29 05:59:45.023682 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 24.12MB / 75.95MB 2.1s
+2026-Oct-29 05:59:45.023682 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 28.31MB / 75.95MB 2.3s
+2026-Oct-29 05:59:45.023682 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 32.45MB / 75.95MB 2.6s
+2026-Oct-29 05:59:45.023682 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 36.69MB / 75.95MB 2.9s
+2026-Oct-29 05:59:45.023682 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 40.89MB / 75.95MB 3.2s
+2026-Oct-29 05:59:45.023682 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 47.98MB / 75.95MB 3.6s
+2026-Oct-29 05:59:45.023682 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 53.48MB / 75.95MB 3.9s
+2026-Oct-29 05:59:45.023682 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 58.72MB / 75.95MB 4.2s
+2026-Oct-29 05:59:45.023682 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 64.69MB / 75.95MB 4.5s
+2026-Oct-29 05:59:45.023682 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 69.21MB / 75.95MB 4.8s
+2026-Oct-29 05:59:45.023682 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 74.45MB / 75.95MB 5.1s
+2026-Oct-29 05:59:45.023682 #4 sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 75.95MB / 75.95MB 5.2s done
+2026-Oct-29 05:59:45.023682 #4 extracting sha256:2726e237d1a374379e783053d93d0345c8a3bf3c57b5d35b099de1ad777486ee 4.4s done
+2026-Oct-29 05:59:45.023682 #4 extracting sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913
+2026-Oct-29 05:59:45.023682 #4 extracting sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 5.0s
+2026-Oct-29 05:59:45.023682 #4 extracting sha256:7962e2b983fd33a26ed1c6cd3dc8130d909d793c6a76893ed532f122edf72913 6.9s done
+2026-Oct-29 05:59:45.023682 #4 extracting sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06
+2026-Oct-29 05:59:45.023682 #4 extracting sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 5.0s
+2026-Oct-29 05:59:45.023682 #4 extracting sha256:b65af0a51d863b994ae8e73f3b739ad2c14c4ab0f3b8807c7baf25404b897c06 8.9s done
+2026-Oct-29 05:59:45.023682 #4 extracting sha256:866b26ac4e4722aa6bd512e1e0c5fa91657dc060ef3eebbbcbd6057625e8f518
+2026-Oct-29 05:59:45.023682 #4 extracting sha256:866b26ac4e4722aa6bd512e1e0c5fa91657dc060ef3eebbbcbd6057625e8f518 done
+2026-Oct-29 05:59:45.023682 #4 DONE 22.4s
+2026-Oct-29 05:59:45.023682
+2026-Oct-29 05:59:45.023682 #6 [stage-0 2/11] WORKDIR /app/
+2026-Oct-29 05:59:45.023682 #6 DONE 0.2s
+2026-Oct-29 05:59:45.023682
+2026-Oct-29 05:59:45.023682 #7 [stage-0 3/11] COPY .nixpacks/nixpkgs-31fb21469e34b6b5c7be77b9a35bae43d0c598e9.nix .nixpacks/nixpkgs-31fb21469e34b6b5c7be77b9a35bae43d0c598e9.nix
+2026-Oct-29 05:59:45.023682 #7 DONE 0.1s
+2026-Oct-29 05:59:45.023682
+2026-Oct-29 05:59:45.023682 #8 [stage-0 4/11] RUN nix-env -if .nixpacks/nixpkgs-31fb21469e34b6b5c7be77b9a35bae43d0c598e9.nix && nix-collect-garbage -d
+2026-Oct-29 05:59:45.023682 #8 0.331 unpacking 'https://github.com/NixOS/nixpkgs/archive/31fb21469e34b6b5c7be77b9a35bae43d0c598e9.tar.gz' into the Git cache...
+2026-Oct-29 05:59:45.023682 #8 106.9 unpacking 'https://github.com/railwayapp/nix-npm-overlay/archive/main.tar.gz' into the Git cache...
+2026-Oct-29 05:59:45.023682 #8 108.8 installing '31fb21469e34b6b5c7be77b9a35bae43d0c598e9-env'
+2026-Oct-29 05:59:45.023682 #8 110.6 these 3 derivations will be built:
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/r9gjz07l7wrgsbqnc6zwsv7qcpqhn4qw-libraries.drv
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/5gwmg0viyqrrml546dkjvlrzzqpgb2sb-31fb21469e34b6b5c7be77b9a35bae43d0c598e9-env.drv
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/bsmhksnpwm2zqvharks73v9b2p9dfh9f-31fb21469e34b6b5c7be77b9a35bae43d0c598e9-env.drv
+2026-Oct-29 05:59:45.023682 #8 110.6 these 51 paths will be fetched (83.26 MiB download, 392.11 MiB unpacked):
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/jj3knbpiiwbwmplin208h775gzm86rc3-acl-2.3.2
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/2mwbf3viqfqd3lr946slqby9y4k7d9lw-attr-2.5.2
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/cl2gkgnh26mmpka81pc2g5bzjfrili92-bash-5.3p3
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/2j7r5np0vaz4cnqkymp1mqivmjj1x9xl-bash-interactive-5.3p3
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/1dw13nzqf9v8w7jcy205hkp7s7ggi0cc-builder.pl
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/xcl91nw8b1zihm32cwxrqdvaakdnip75-bun-1.3.0
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/j59qq0cqb364kzzrx2r32swfljwklxlq-bzip2-1.0.8
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/xnd0ld68fzj1g1qr19gg0va486snwj22-bzip2-1.0.8-bin
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/00bc157nm93q5fjz551fwk60ihlbilvj-coreutils-9.7
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/c7qlkpbivy2znqxd25prgh9pwjxdri6w-diffutils-3.12
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/wgvx9p6h00aijb9jw95am7095wjzm9mv-ed-1.22.2
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/5qm0vivgc7lmiyfbf5d5a55s40d996bd-file-5.45
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/wq1cxh4s8rz8vs4ssp2z49v96m0nhxhj-findutils-4.10.0
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/swbmnc2s8g2zxzxh62hx1vbbcg6i2r5b-gawk-5.3.2
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/xp989kyfg52803fmkzbz5py35jphcpgd-gcc-14.3.0-lib
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/8b9srwwmrwmh1yl613cwwj7gydl87br6-gcc-14.3.0-libgcc
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/qhw0sp183mqd04x5jp75981kwya64npv-glibc-2.40-66
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/78xkc7z5m21chq7p6awrzgznz83xyml0-gmp-with-cxx-6.3.0
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/2j08vib6rf81vwi6mv3s544wi8rj3xn7-gnu-config-2024-01-01
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/6q57mnfak3q8ss656qgp245qzqvnniyr-gnugrep-3.12
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/lmn1m0giq5bkgdqvdpiryb9a2ly28w6g-gnumake-4.4.1
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/7zy6jnnpqh16b18j6ar289vhwp17msh0-gnused-4.9
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/n09s57l86zxyjydkxagawxpkhh3d3dlh-gnutar-1.35
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/wd4i398mh329vhw93mvmamw3hrnhl257-gzip-1.14
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/hpyfq2n0qr4qj3z1f7d2diw8sql5m84f-icu4c-76.1
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/zc7w3ii28j4kagmlznjdajf0nzd0z60a-icu4c-76.1-dev
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/wwqyxsvmg41q5ckfvvv6wa50nwvz9dv4-libidn2-2.3.8
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/7ndy5820h69n1pgd13viph1qjq6zhhkj-libunistring-1.3
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/2pi0ddhdi6m4fnxw9w42qksz9jk1ja1i-libuv-1.51.0
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/adklcnjpc31n6jabha2qd60y2s9wm133-libuv-1.51.0-dev
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/nkn950vf2i29k4v3z6w9717pjrg483ng-libxcrypt-4.4.38
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/lm4wm3f4ynilxw8yvgqq0hj2ng8ky9xy-ncurses-6.5
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/cwxxy2is6hb4dcqsx8rhnvwic3hfzpcd-nodejs-22.19.0
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/0837wpkjb27cr70bi3pc4g2rw5v9r63l-openssl-3.5.2
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/3kasb92ri5cmp7gwxgj8jgk87pr83y7p-openssl-3.5.2-bin
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/cz9k6nhxjppa1kmyf5npd0g8l89xzilw-openssl-3.5.2-dev
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/r9lif1a0naanr8kdapwnbnr39lr7d56a-patch-2.8
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/0032synbfqd0ylgf9szgp724nmw2fq89-patchelf-0.15.2
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/wqlkv0cjacnm7arca156p3d3vh0kdbmk-pcre2-10.46
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/k2y9xpcdqxma66kag80nhbv0pq2bznzf-perl-5.40.0
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/zqkjn730gir222v3mkp82c1pmqfb2j0l-readline-8.3p1
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/jqrf546vxc6nzf4575m4am3w4ywq765i-sqlite-3.50.4
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/7p5yg8li32wgxxsydbzblnjgs8hvl9wd-sqlite-3.50.4-bin
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/3a7y8k7fh6xldnpvd3bx3ygnx5044xw6-sqlite-3.50.4-dev
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/x1d0ad98h92lp5g59pfryjzk4ca84i3r-stdenv-linux
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/ka03rs4a3bybjhqpvg388sdszbybvbff-update-autotools-gnu-config-scripts-hook
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/0ja5daq2yay3svg6f48spyfby7pgy5bm-xgcc-14.3.0-libgcc
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/swqs30pymm3ymv2qnkzs353xmpgr80jr-xz-5.8.1
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/77jyjqy2b9l2a0139im9ds28zkdv0ybc-xz-5.8.1-bin
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/6qi8skh85ci2k9gvl27nnh3kiy32qnsz-zlib-1.3.1
+2026-Oct-29 05:59:45.023682 #8 110.6 /nix/store/6fqij3sy1mlsnq1n679bzbl5bkqs7yvk-zlib-1.3.1-dev
+2026-Oct-29 05:59:45.023682 #8 110.6 copying path '/nix/store/1dw13nzqf9v8w7jcy205hkp7s7ggi0cc-builder.pl' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 110.6 copying path '/nix/store/2j08vib6rf81vwi6mv3s544wi8rj3xn7-gnu-config-2024-01-01' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 110.6 copying path '/nix/store/7ndy5820h69n1pgd13viph1qjq6zhhkj-libunistring-1.3' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 110.6 copying path '/nix/store/0ja5daq2yay3svg6f48spyfby7pgy5bm-xgcc-14.3.0-libgcc' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 110.6 copying path '/nix/store/8b9srwwmrwmh1yl613cwwj7gydl87br6-gcc-14.3.0-libgcc' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 110.6 copying path '/nix/store/ka03rs4a3bybjhqpvg388sdszbybvbff-update-autotools-gnu-config-scripts-hook' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 110.7 copying path '/nix/store/wwqyxsvmg41q5ckfvvv6wa50nwvz9dv4-libidn2-2.3.8' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 110.8 copying path '/nix/store/qhw0sp183mqd04x5jp75981kwya64npv-glibc-2.40-66' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.1 copying path '/nix/store/2mwbf3viqfqd3lr946slqby9y4k7d9lw-attr-2.5.2' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.1 copying path '/nix/store/wgvx9p6h00aijb9jw95am7095wjzm9mv-ed-1.22.2' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.1 copying path '/nix/store/xcl91nw8b1zihm32cwxrqdvaakdnip75-bun-1.3.0' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.1 copying path '/nix/store/lm4wm3f4ynilxw8yvgqq0hj2ng8ky9xy-ncurses-6.5' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.1 copying path '/nix/store/2pi0ddhdi6m4fnxw9w42qksz9jk1ja1i-libuv-1.51.0' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.1 copying path '/nix/store/cl2gkgnh26mmpka81pc2g5bzjfrili92-bash-5.3p3' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.1 copying path '/nix/store/7zy6jnnpqh16b18j6ar289vhwp17msh0-gnused-4.9' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.1 copying path '/nix/store/lmn1m0giq5bkgdqvdpiryb9a2ly28w6g-gnumake-4.4.1' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.1 copying path '/nix/store/xp989kyfg52803fmkzbz5py35jphcpgd-gcc-14.3.0-lib' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.1 copying path '/nix/store/swqs30pymm3ymv2qnkzs353xmpgr80jr-xz-5.8.1' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.1 copying path '/nix/store/swbmnc2s8g2zxzxh62hx1vbbcg6i2r5b-gawk-5.3.2' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.1 copying path '/nix/store/j59qq0cqb364kzzrx2r32swfljwklxlq-bzip2-1.0.8' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.1 copying path '/nix/store/0837wpkjb27cr70bi3pc4g2rw5v9r63l-openssl-3.5.2' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.1 copying path '/nix/store/6qi8skh85ci2k9gvl27nnh3kiy32qnsz-zlib-1.3.1' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.1 copying path '/nix/store/wqlkv0cjacnm7arca156p3d3vh0kdbmk-pcre2-10.46' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.1 copying path '/nix/store/nkn950vf2i29k4v3z6w9717pjrg483ng-libxcrypt-4.4.38' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.2 copying path '/nix/store/jj3knbpiiwbwmplin208h775gzm86rc3-acl-2.3.2' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.2 copying path '/nix/store/adklcnjpc31n6jabha2qd60y2s9wm133-libuv-1.51.0-dev' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.4 copying path '/nix/store/xnd0ld68fzj1g1qr19gg0va486snwj22-bzip2-1.0.8-bin' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.4 copying path '/nix/store/jqrf546vxc6nzf4575m4am3w4ywq765i-sqlite-3.50.4' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.4 copying path '/nix/store/5qm0vivgc7lmiyfbf5d5a55s40d996bd-file-5.45' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.4 copying path '/nix/store/7p5yg8li32wgxxsydbzblnjgs8hvl9wd-sqlite-3.50.4-bin' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.4 copying path '/nix/store/r9lif1a0naanr8kdapwnbnr39lr7d56a-patch-2.8' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.4 copying path '/nix/store/6fqij3sy1mlsnq1n679bzbl5bkqs7yvk-zlib-1.3.1-dev' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.4 copying path '/nix/store/n09s57l86zxyjydkxagawxpkhh3d3dlh-gnutar-1.35' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.6 copying path '/nix/store/77jyjqy2b9l2a0139im9ds28zkdv0ybc-xz-5.8.1-bin' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.6 copying path '/nix/store/wd4i398mh329vhw93mvmamw3hrnhl257-gzip-1.14' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 112.7 copying path '/nix/store/6q57mnfak3q8ss656qgp245qzqvnniyr-gnugrep-3.12' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 113.5 copying path '/nix/store/3a7y8k7fh6xldnpvd3bx3ygnx5044xw6-sqlite-3.50.4-dev' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 113.6 copying path '/nix/store/0032synbfqd0ylgf9szgp724nmw2fq89-patchelf-0.15.2' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 113.6 copying path '/nix/store/hpyfq2n0qr4qj3z1f7d2diw8sql5m84f-icu4c-76.1' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 113.6 copying path '/nix/store/78xkc7z5m21chq7p6awrzgznz83xyml0-gmp-with-cxx-6.3.0' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 113.7 copying path '/nix/store/00bc157nm93q5fjz551fwk60ihlbilvj-coreutils-9.7' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 113.8 copying path '/nix/store/3kasb92ri5cmp7gwxgj8jgk87pr83y7p-openssl-3.5.2-bin' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 114.0 copying path '/nix/store/cz9k6nhxjppa1kmyf5npd0g8l89xzilw-openssl-3.5.2-dev' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 114.1 copying path '/nix/store/c7qlkpbivy2znqxd25prgh9pwjxdri6w-diffutils-3.12' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 114.1 copying path '/nix/store/wq1cxh4s8rz8vs4ssp2z49v96m0nhxhj-findutils-4.10.0' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 114.1 copying path '/nix/store/k2y9xpcdqxma66kag80nhbv0pq2bznzf-perl-5.40.0' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 114.5 copying path '/nix/store/x1d0ad98h92lp5g59pfryjzk4ca84i3r-stdenv-linux' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 114.6 building '/nix/store/r9gjz07l7wrgsbqnc6zwsv7qcpqhn4qw-libraries.drv'...
+2026-Oct-29 05:59:45.023682 #8 116.1 building '/nix/store/5gwmg0viyqrrml546dkjvlrzzqpgb2sb-31fb21469e34b6b5c7be77b9a35bae43d0c598e9-env.drv'...
+2026-Oct-29 05:59:45.023682 #8 116.1 copying path '/nix/store/zqkjn730gir222v3mkp82c1pmqfb2j0l-readline-8.3p1' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 116.3 copying path '/nix/store/2j7r5np0vaz4cnqkymp1mqivmjj1x9xl-bash-interactive-5.3p3' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 117.5 copying path '/nix/store/zc7w3ii28j4kagmlznjdajf0nzd0z60a-icu4c-76.1-dev' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 117.8 copying path '/nix/store/cwxxy2is6hb4dcqsx8rhnvwic3hfzpcd-nodejs-22.19.0' from 'https://cache.nixos.org'...
+2026-Oct-29 05:59:45.023682 #8 122.5 building '/nix/store/bsmhksnpwm2zqvharks73v9b2p9dfh9f-31fb21469e34b6b5c7be77b9a35bae43d0c598e9-env.drv'...
+2026-Oct-29 05:59:45.023682 #8 122.7 created 16 symlinks in user environment
+2026-Oct-29 05:59:45.023682 #8 122.9 building '/nix/store/m6x9hm9ijmjggzr05h95jc3biw72flsw-user-environment.drv'...
+2026-Oct-29 05:59:45.023682 #8 123.3 removing old generations of profile /nix/var/nix/profiles/per-user/root/profile
+2026-Oct-29 05:59:45.023682 #8 123.3 removing profile version 1
+2026-Oct-29 05:59:45.023682 #8 123.3 removing old generations of profile /nix/var/nix/profiles/per-user/root/channels
+2026-Oct-29 05:59:45.023682 #8 123.3 removing old generations of profile /nix/var/nix/profiles/per-user/root/profile
+2026-Oct-29 05:59:45.023682 #8 123.3 removing old generations of profile /nix/var/nix/profiles/per-user/root/channels
+2026-Oct-29 05:59:45.023682 #8 123.3 finding garbage collector roots...
+2026-Oct-29 05:59:45.023682 #8 123.3 removing stale link from '/nix/var/nix/gcroots/auto/lzjbmb2ry0z7lma2fvpqprb12921pnb5' to '/nix/var/nix/profiles/per-user/root/profile-1-link'
+2026-Oct-29 05:59:45.023682 #8 123.3 deleting garbage...
+2026-Oct-29 05:59:45.023682 #8 123.3 deleting '/nix/store/a9qf4wwhympzs35ncp80r185j6a21w07-user-environment'
+2026-Oct-29 05:59:45.023682 #8 123.4 deleting '/nix/store/253kwn1730vnay87xkjgxa2v97w3y079-user-environment.drv'
+2026-Oct-29 05:59:45.023682 #8 123.4 deleting '/nix/store/hn5mrh362n52x8wwab9s1v6bgn4n5c94-env-manifest.nix'
+2026-Oct-29 05:59:45.023682 #8 123.4 deleting '/nix/store/x1d0ad98h92lp5g59pfryjzk4ca84i3r-stdenv-linux'
+2026-Oct-29 05:59:45.023682 #8 123.4 deleting '/nix/store/77jyjqy2b9l2a0139im9ds28zkdv0ybc-xz-5.8.1-bin'
+2026-Oct-29 05:59:45.023682 #8 123.4 deleting '/nix/store/wq1cxh4s8rz8vs4ssp2z49v96m0nhxhj-findutils-4.10.0'
+2026-Oct-29 05:59:45.023682 #8 123.4 deleting '/nix/store/n09s57l86zxyjydkxagawxpkhh3d3dlh-gnutar-1.35'
+2026-Oct-29 05:59:45.023682 #8 123.4 deleting '/nix/store/swqs30pymm3ymv2qnkzs353xmpgr80jr-xz-5.8.1'
+2026-Oct-29 05:59:45.023682 #8 123.4 deleting '/nix/store/c7qlkpbivy2znqxd25prgh9pwjxdri6w-diffutils-3.12'
+2026-Oct-29 05:59:45.023682 #8 123.4 deleting '/nix/store/2w56d3yplcdfg19kddn8gd194yj4yzpp-source'
+2026-Oct-29 05:59:45.023682 #8 130.2 deleting '/nix/store/p9wgp8bdxlk4sg80lc8rwdbdcqcxc3cz-source'
+2026-Oct-29 05:59:45.023682 #8 130.3 deleting '/nix/store/k2y9xpcdqxma66kag80nhbv0pq2bznzf-perl-5.40.0'
+2026-Oct-29 05:59:45.023682 #8 130.4 deleting '/nix/store/r9lif1a0naanr8kdapwnbnr39lr7d56a-patch-2.8'
+2026-Oct-29 05:59:45.023682 #8 130.4 deleting '/nix/store/fzwylivnpgh93d0f86wczhqgyw4168z9-libraries'
+2026-Oct-29 05:59:45.023682 #8 130.4 deleting '/nix/store/xnd0ld68fzj1g1qr19gg0va486snwj22-bzip2-1.0.8-bin'
+2026-Oct-29 05:59:45.023682 #8 130.4 deleting '/nix/store/5qm0vivgc7lmiyfbf5d5a55s40d996bd-file-5.45'
+2026-Oct-29 05:59:45.023682 #8 130.4 deleting '/nix/store/6q57mnfak3q8ss656qgp245qzqvnniyr-gnugrep-3.12'
+2026-Oct-29 05:59:45.023682 #8 130.4 deleting '/nix/store/wgvx9p6h00aijb9jw95am7095wjzm9mv-ed-1.22.2'
+2026-Oct-29 05:59:45.023682 #8 130.4 deleting '/nix/store/swbmnc2s8g2zxzxh62hx1vbbcg6i2r5b-gawk-5.3.2'
+2026-Oct-29 05:59:45.023682 #8 130.4 deleting '/nix/store/ka03rs4a3bybjhqpvg388sdszbybvbff-update-autotools-gnu-config-scripts-hook'
+2026-Oct-29 05:59:45.023682 #8 130.4 deleting '/nix/store/2j08vib6rf81vwi6mv3s544wi8rj3xn7-gnu-config-2024-01-01'
+2026-Oct-29 05:59:45.023682 #8 130.4 deleting '/nix/store/wqlkv0cjacnm7arca156p3d3vh0kdbmk-pcre2-10.46'
+2026-Oct-29 05:59:45.023682 #8 130.4 deleting '/nix/store/wd4i398mh329vhw93mvmamw3hrnhl257-gzip-1.14'
+2026-Oct-29 05:59:45.023682 #8 130.4 deleting '/nix/store/7zy6jnnpqh16b18j6ar289vhwp17msh0-gnused-4.9'
+2026-Oct-29 05:59:45.023682 #8 130.4 deleting '/nix/store/lmn1m0giq5bkgdqvdpiryb9a2ly28w6g-gnumake-4.4.1'
+2026-Oct-29 05:59:45.023682 #8 130.5 deleting '/nix/store/i6c20krnakaiv6zbraxl2q60hn8rmjwq-exec.drv'
+2026-Oct-29 05:59:45.023682 #8 130.5 deleting '/nix/store/0032synbfqd0ylgf9szgp724nmw2fq89-patchelf-0.15.2'
+2026-Oct-29 05:59:45.023682 #8 130.5 deleting '/nix/store/1dw13nzqf9v8w7jcy205hkp7s7ggi0cc-builder.pl'
+2026-Oct-29 05:59:45.023682 #8 130.5 deleting '/nix/store/nkn950vf2i29k4v3z6w9717pjrg483ng-libxcrypt-4.4.38'
+2026-Oct-29 05:59:45.023682 #8 130.5 deleting '/nix/store/j59qq0cqb364kzzrx2r32swfljwklxlq-bzip2-1.0.8'
+2026-Oct-29 05:59:45.023682 #8 130.5 deleting unused links...
+2026-Oct-29 05:59:45.023682 #8 136.4 note: currently hard linking saves -0.77 MiB
+2026-Oct-29 05:59:45.023682 #8 136.5 30 store paths deleted, 244.82 MiB freed
+2026-Oct-29 05:59:45.023682 #8 DONE 136.7s
+2026-Oct-29 05:59:45.023682
+2026-Oct-29 05:59:45.023682 #9 [stage-0 5/11] RUN sudo apt-get update && sudo apt-get install -y --no-install-recommends curl wget
+2026-Oct-29 05:59:45.023682 #9 0.664 Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-Oct-29 05:59:45.023682 #9 0.697 Get:2 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+2026-Oct-29 05:59:45.023682 #9 1.211 Get:3 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1412 kB]
+2026-Oct-29 05:59:45.023682 #9 1.295 Get:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-Oct-29 05:59:45.023682 #9 1.446 Get:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-Oct-29 05:59:45.023682 #9 1.602 Get:6 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+2026-Oct-29 05:59:45.023682 #9 1.643 Get:7 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+2026-Oct-29 05:59:45.023682 #9 1.660 Get:8 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1550 kB]
+2026-Oct-29 05:59:45.023682 #9 1.758 Get:9 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [55.6 kB]
+2026-Oct-29 05:59:45.023682 #9 1.763 Get:10 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [2122 kB]
+2026-Oct-29 05:59:45.023682 #9 1.979 Get:11 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+2026-Oct-29 05:59:45.023682 #9 2.783 Get:12 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+2026-Oct-29 05:59:45.023682 #9 2.800 Get:13 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [2235 kB]
+2026-Oct-29 05:59:45.023682 #9 2.858 Get:14 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1740 kB]
+2026-Oct-29 05:59:45.023682 #9 2.962 Get:15 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [61.7 kB]
+2026-Oct-29 05:59:45.023682 #9 2.983 Get:16 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2172 kB]
+2026-Oct-29 05:59:45.023682 #9 3.044 Get:17 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [669 B]
+2026-Oct-29 05:59:45.023682 #9 3.046 Get:18 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
+2026-Oct-29 05:59:45.023682 #9 3.047 Get:19 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.0 kB]
+2026-Oct-29 05:59:45.023682 #9 5.158 Fetched 33.6 MB in 5s (7204 kB/s)
+2026-Oct-29 05:59:45.023682 #9 5.158 Reading package lists...
+2026-Oct-29 05:59:45.023682 #9 7.931 Reading package lists...
+2026-Oct-29 05:59:45.023682 #9 10.82 Building dependency tree...
+2026-Oct-29 05:59:45.023682 #9 11.33 Reading state information...
+2026-Oct-29 05:59:45.023682 #9 12.26 The following additional packages will be installed:
+2026-Oct-29 05:59:45.023682 #9 12.26 libcurl3t64-gnutls libcurl4t64
+2026-Oct-29 05:59:45.023682 #9 12.38 The following NEW packages will be installed:
+2026-Oct-29 05:59:45.023682 #9 12.38 wget
+2026-Oct-29 05:59:45.023682 #9 12.38 The following packages will be upgraded:
+2026-Oct-29 05:59:45.023682 #9 12.39 curl libcurl3t64-gnutls libcurl4t64
+2026-Oct-29 05:59:45.023682 #9 12.66 3 upgraded, 1 newly installed, 0 to remove and 68 not upgraded.
+2026-Oct-29 05:59:45.023682 #9 12.66 Need to get 1241 kB of archives.
+2026-Oct-29 05:59:45.023682 #9 12.66 After this operation, 947 kB of additional disk space will be used.
+2026-Oct-29 05:59:45.023682 #9 12.66 Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 wget amd64 1.21.4-1ubuntu4.5 [334 kB]
+2026-Oct-29 05:59:45.023682 #9 13.26 Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 curl amd64 8.5.0-2ubuntu10.16 [226 kB]
+2026-Oct-29 05:59:45.023682 #9 13.32 Get:3 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcurl4t64 amd64 8.5.0-2ubuntu10.16 [344 kB]
+2026-Oct-29 05:59:45.023682 #9 13.41 Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcurl3t64-gnutls amd64 8.5.0-2ubuntu10.16 [337 kB]
+2026-Oct-29 05:59:45.023682 #9 13.90 debconf: delaying package configuration, since apt-utils is not installed
+2026-Oct-29 05:59:45.023682 #9 14.00 Fetched 1241 kB in 1s (1180 kB/s)
+2026-Oct-29 05:59:45.023682 #9 14.07 Selecting previously unselected package wget.
+2026-Oct-29 05:59:45.023682 #9 14.07 (Reading database ... (Reading database ... 5% (Reading database ... 10% (Reading database ... 15% (Reading database ... 20% (Reading database ... 25% (Reading database ... 30% (Reading database ... 35% (Reading database ... 40% (Reading database ... 45% (Reading database ... 50% (Reading database ... 55% (Reading database ... 60% (Reading database ... 65% (Reading database ... 70% (Reading database ... 75% (Reading database ... 80% (Reading database ... 85% (Reading database ... 90% (Reading database ... 95% (Reading database ... 100% (Reading database ... 9511 files and directories currently installed.)
+2026-Oct-29 05:59:45.023682 #9 14.17 Preparing to unpack .../wget_1.21.4-1ubuntu4.5_amd64.deb ...
+2026-Oct-29 05:59:45.023682 #9 14.17 Unpacking wget (1.21.4-1ubuntu4.5) ...
+2026-Oct-29 05:59:45.023682 #9 14.25 Preparing to unpack .../curl_8.5.0-2ubuntu10.16_amd64.deb ...
+2026-Oct-29 05:59:45.023682 #9 14.30 Unpacking curl (8.5.0-2ubuntu10.16) over (8.5.0-2ubuntu10.6) ...
+2026-Oct-29 05:59:45.023682 #9 14.37 Preparing to unpack .../libcurl4t64_8.5.0-2ubuntu10.16_amd64.deb ...
+2026-Oct-29 05:59:45.023682 #9 14.38 Unpacking libcurl4t64:amd64 (8.5.0-2ubuntu10.16) over (8.5.0-2ubuntu10.6) ...
+2026-Oct-29 05:59:45.023682 #9 14.48 Preparing to unpack .../libcurl3t64-gnutls_8.5.0-2ubuntu10.16_amd64.deb ...
+2026-Oct-29 05:59:45.023682 #9 14.55 Unpacking libcurl3t64-gnutls:amd64 (8.5.0-2ubuntu10.16) over (8.5.0-2ubuntu10.6) ...
+2026-Oct-29 05:59:45.023682 #9 14.63 Setting up wget (1.21.4-1ubuntu4.5) ...
+2026-Oct-29 05:59:45.023682 #9 14.65 Setting up libcurl4t64:amd64 (8.5.0-2ubuntu10.16) ...
+2026-Oct-29 05:59:45.023682 #9 14.66 Setting up libcurl3t64-gnutls:amd64 (8.5.0-2ubuntu10.16) ...
+2026-Oct-29 05:59:45.023682 #9 14.66 Setting up curl (8.5.0-2ubuntu10.16) ...
+2026-Oct-29 05:59:45.023682 #9 14.67 Processing triggers for libc-bin (2.39-0ubuntu8.4) ...
+2026-Oct-29 05:59:45.023682 #9 DONE 14.9s
+2026-Oct-29 05:59:45.023682
+2026-Oct-29 05:59:45.023682 #10 [stage-0 6/11] COPY . /app/.
+2026-Oct-29 05:59:45.023682 #10 DONE 0.1s
+2026-Oct-29 05:59:45.023682
+2026-Oct-29 05:59:45.023682 #11 [stage-0 7/11] RUN --mount=type=cache,id=artvjoxbxndnpobcz4urao90-/root/bun,target=/root/.bun bun install
+2026-Oct-29 05:59:45.023682 #11 ERROR: process "/bin/bash -ol pipefail -c bun install" did not complete successfully: exit code: 132
+2026-Oct-29 05:59:45.023682 ------
+2026-Oct-29 05:59:45.023682 > [stage-0 7/11] RUN --mount=type=cache,id=artvjoxbxndnpobcz4urao90-/root/bun,target=/root/.bun bun install:
+2026-Oct-29 05:59:45.023682 ------
+2026-Oct-29 05:59:45.023682
+2026-Oct-29 05:59:45.023682 1 warning found (use docker --debug to expand):
+2026-Oct-29 05:59:45.023682 - UndefinedVar: Usage of undefined variable '$NIXPACKS_PATH' (line 18)
+2026-Oct-29 05:59:45.023682 Dockerfile:20
+2026-Oct-29 05:59:45.023682 --------------------
+2026-Oct-29 05:59:45.023682 18 | ENV NIXPACKS_PATH=/app/node_modules/.bin:$NIXPACKS_PATH
+2026-Oct-29 05:59:45.023682 19 | COPY . /app/.
+2026-Oct-29 05:59:45.023682 20 | >>> RUN --mount=type=cache,id=artvjoxbxndnpobcz4urao90-/root/bun,target=/root/.bun bun install
+2026-Oct-29 05:59:45.023682 21 |
+2026-Oct-29 05:59:45.023682 22 | # build phase
+2026-Oct-29 05:59:45.023682 --------------------
+2026-Oct-29 05:59:45.023682 ERROR: failed to build: failed to solve: process "/bin/bash -ol pipefail -c bun install" did not complete successfully: exit code: 132
+2026-Oct-29 05:59:45.023682 exit status 1
+2026-Oct-29 05:59:45.043115 Error type: App\Exceptions\DeploymentException
+2026-Oct-29 05:59:45.075556 Error code: 0
+2026-Oct-29 05:59:45.095281 Location: /var/www/html/app/Traits/ExecuteRemoteCommand.php:242
+2026-Oct-29 05:59:45.115827 Stack trace (first 5 lines):
+2026-Oct-29 05:59:45.135742 #0 /var/www/html/app/Traits/ExecuteRemoteCommand.php(106): App\Jobs\ApplicationDeploymentJob->executeCommandWithProcess()
+2026-Oct-29 05:59:45.156040 #1 /var/www/html/vendor/laravel/framework/src/Illuminate/Collections/Traits/EnumeratesValues.php(275): App\Jobs\ApplicationDeploymentJob->{closure:App\Traits\ExecuteRemoteCommand::execute_remote_command():72}()
+2026-Oct-29 05:59:45.174266 #2 /var/www/html/app/Traits/ExecuteRemoteCommand.php(72): Illuminate\Support\Collection->each()
+2026-Oct-29 05:59:45.196342 #3 /var/www/html/app/Jobs/ApplicationDeploymentJob.php(3778): App\Jobs\ApplicationDeploymentJob->execute_remote_command()
+2026-Oct-29 05:59:45.215714 #4 /var/www/html/app/Jobs/ApplicationDeploymentJob.php(946): App\Jobs\ApplicationDeploymentJob->build_image()
+2026-Oct-29 05:59:45.234874 ========================================
+2026-Oct-29 05:59:45.256325 Deployment failed. Removing the new version of your application.
+2026-Oct-29 05:59:46.020027 Gracefully shutting down build container: w10o1699okkpkcksfqeqltwz
+2026-Oct-29 05:59:46.595086 [CMD]: docker stop --time=30 w10o1699okkpkcksfqeqltwz
+2026-Oct-29 05:59:46.595086 w10o1699okkpkcksfqeqltwz
